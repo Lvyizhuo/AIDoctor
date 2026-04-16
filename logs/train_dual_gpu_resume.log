@@ -1,0 +1,716 @@
+run sh: `/root/anaconda3/envs/llm/bin/python3.11 -m torch.distributed.run --nproc_per_node 2 /root/data1/MyProject/AIDoctor/llm/ms-swift/swift/cli/sft.py --model_type qwen --model /root/data1/MyProject/AIDoctor/llm/Qwen/Qwen-1_8B-Chat --train_type lora --custom_dataset_info /root/data1/MyProject/AIDoctor/llm/train_data/custom_dataset_sitengheli.json --dataset med-disc med-self-cog --bf16 true --num_train_epochs 2 --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 2 --learning_rate 1e-4 --lora_rank 16 --lora_alpha 32 --target_modules all-linear --max_length 2048 --eval_steps 500 --save_steps 500 --save_total_limit 5 --logging_steps 10 --output_dir /root/data1/MyProject/AIDoctor/llm/output --system 你是专业医疗助手，专注为您提供严谨、安全的医疗健康咨询服务。 --resume_from_checkpoint /root/data1/MyProject/AIDoctor/llm/output/v1-20260415-192518/checkpoint-4000`
+WARNING:__main__:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[INFO:swift] Successfully registered `/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/dataset/data/dataset_info.json`.
+`torch_dtype` is deprecated! Use `dtype` instead!
+[INFO:swift] rank: 0, local_rank: 0, world_size: 2, local_world_size: 2
+`torch_dtype` is deprecated! Use `dtype` instead!
+[INFO:swift] Setting torch_dtype: torch.bfloat16
+[INFO:swift] Successfully registered `/root/data1/MyProject/AIDoctor/llm/train_data/custom_dataset_sitengheli.json`.
+[INFO:swift] Setting args.lazy_tokenize: False
+[INFO:swift] Setting args.dataloader_num_workers: 1
+[INFO:swift] output_dir: /root/data1/MyProject/AIDoctor/llm/output/v2-20260416-091352
+[INFO:swift] Global seed set to 42
+[INFO:swift] args: TrainArguments(
+_n_gpu=-1,
+acc_strategy=token,
+accelerator_config={'dispatch_batches': False},
+adafactor=False,
+adalora_beta1=0.85,
+adalora_beta2=0.85,
+adalora_deltaT=1,
+adalora_init_r=12,
+adalora_orth_reg_weight=0.5,
+adalora_target_r=8,
+adalora_tfinal=0,
+adalora_tinit=0,
+adam_beta1=0.9,
+adam_beta2=0.95,
+adam_epsilon=1e-08,
+adapter_act=gelu,
+adapter_length=128,
+adapters=[],
+add_non_thinking_prefix=True,
+add_version=True,
+agent_template=None,
+aligner_lr=None,
+attn_impl=None,
+auto_find_batch_size=False,
+average_tokens_across_devices=True,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+bnb_4bit_compute_dtype=torch.bfloat16,
+bnb_4bit_quant_storage=None,
+bnb_4bit_quant_type=nf4,
+bnb_4bit_use_double_quant=True,
+boft_block_num=0,
+boft_block_size=4,
+boft_dropout=0.0,
+boft_n_butterfly_factor=1,
+cached_dataset=[],
+cached_val_dataset=[],
+check_model=True,
+ckpt_dir=None,
+columns={},
+create_checkpoint_symlink=False,
+custom_dataset_info=['/root/data1/MyProject/AIDoctor/llm/train_data/custom_dataset_sitengheli.json'],
+custom_register_path=[],
+data_seed=42,
+dataloader_drop_last=False,
+dataloader_num_workers=None,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset=['med-disc', 'med-self-cog'],
+dataset_num_proc=1,
+dataset_shuffle=True,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=18000000,
+debug=None,
+deepspeed=None,
+deepspeed_autotp_size=None,
+device_groups=None,
+device_map=None,
+disable_tqdm=None,
+do_eval=False,
+do_predict=False,
+do_train=False,
+download_mode=reuse_dataset_if_exists,
+ds3_gather_for_generation=True,
+early_stop_interval=None,
+enable_channel_loss=False,
+enable_dft_loss=False,
+enable_thinking=None,
+eval_accumulation_steps=None,
+eval_dataset=[],
+eval_dataset_args=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_generation_config=None,
+eval_limit=None,
+eval_on_start=False,
+eval_steps=500.0,
+eval_strategy=no,
+eval_use_evalscope=False,
+eval_use_gather_object=False,
+external_plugins=[],
+extra_eval_args=None,
+fourier_n_frequency=2000,
+fourier_scaling=300.0,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+freeze_aligner=True,
+freeze_llm=False,
+freeze_parameters=[],
+freeze_parameters_ratio=0.0,
+freeze_parameters_regex=None,
+freeze_vit=True,
+fsdp=[],
+fsdp_config=None,
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+galore_cos_threshold=0.4,
+galore_gamma_proj=2,
+galore_optim_per_parameter=False,
+galore_proj_bits=4,
+galore_proj_group_size=256,
+galore_proj_quant=False,
+galore_proj_type=std,
+galore_quantization=False,
+galore_queue_size=5,
+galore_rank=128,
+galore_scale=1.0,
+galore_target_modules=None,
+galore_update_proj_gap=50,
+galore_with_embedding=False,
+generation_config=None,
+generation_max_length=None,
+generation_num_beams=None,
+gradient_accumulation_steps=2,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs=None,
+greater_is_better=False,
+group_by_length=False,
+half_precision_backend=auto,
+hqq_axis=None,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_revision=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_args_error=False,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+init_strategy=None,
+init_weights=True,
+interleave_prob=None,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+lazy_tokenize=False,
+learning_rate=0.0001,
+length_column_name=length,
+liger_kernel_config=None,
+lisa_activated_layers=0,
+lisa_step_interval=20,
+llamapro_num_groups=None,
+llamapro_num_new_blocks=4,
+load_args=False,
+load_best_model_at_end=False,
+load_data_args=False,
+load_from_cache_file=False,
+local_rank=0,
+local_repo_path=None,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/root/data1/MyProject/AIDoctor/llm/output/v2-20260416-091352/runs,
+logging_first_step=True,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+logprobs=False,
+lora_alpha=32,
+lora_bias=none,
+lora_dropout=0.05,
+lora_dtype=None,
+lora_ga_batch_size=2,
+lora_ga_direction=ArB2r,
+lora_ga_iters=2,
+lora_ga_max_length=1024,
+lora_ga_scale=stable,
+lora_ga_stable_gamma=16,
+lora_modules=[],
+lora_rank=16,
+lorap_lr_ratio=None,
+loss_scale=default,
+loss_type=None,
+lr_scheduler_kwargs=None,
+lr_scheduler_type=cosine,
+max_epochs=None,
+max_grad_norm=1.0,
+max_length=2048,
+max_memory={},
+max_model_len=None,
+max_new_tokens=64,
+max_pixels=None,
+max_steps=-1,
+metric=None,
+metric_for_best_model=loss,
+model=/root/data1/MyProject/AIDoctor/llm/Qwen/Qwen-1_8B-Chat,
+model_author=None,
+model_kwargs={},
+model_name=None,
+model_revision=None,
+model_type=qwen,
+modules_to_save=[],
+mp_parameters=,
+neftune_noise_alpha=None,
+new_special_tokens=[],
+no_cuda=False,
+norm_bbox=None,
+num_beams=1,
+num_labels=None,
+num_train_epochs=2.0,
+optim=adamw_torch,
+optim_args=None,
+optim_target_modules=None,
+optimizer=None,
+output_dir=/root/data1/MyProject/AIDoctor/llm/output/v2-20260416-091352,
+overwrite_output_dir=False,
+packing=False,
+packing_length=None,
+packing_num_proc=1,
+padding_free=False,
+padding_side=right,
+parallelism_config=None,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+predict_with_generate=False,
+prediction_loss_only=False,
+problem_type=None,
+project=huggingface,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+quant_bits=None,
+quant_method=None,
+ray_exp_name=None,
+ray_scope=last,
+reft_args=None,
+reft_intervention_type=LoreftIntervention,
+reft_layer_key=None,
+reft_layers=None,
+reft_rank=4,
+remove_unused_columns=True,
+repetition_penalty=None,
+report_to=['tensorboard'],
+response_prefix=None,
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=/root/data1/MyProject/AIDoctor/llm/output/v1-20260415-192518/checkpoint-4000,
+resume_only_model=False,
+rope_scaling=None,
+router_aux_loss_coef=0.0,
+run_name=/root/data1/MyProject/AIDoctor/llm/output/v2-20260416-091352,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500.0,
+save_strategy=steps,
+save_total_limit=5,
+seed=42,
+sequence_parallel_size=1,
+shuffle_buffer_size=1000,
+skip_memory_metrics=True,
+sortish_sampler=False,
+split_dataset_ratio=0.0,
+stop_words=[],
+stopping_strategy=first_exhausted,
+stream=False,
+streaming=False,
+strict=False,
+structured_outputs_regex=None,
+swanlab_email_language=zh,
+swanlab_exp_name=None,
+swanlab_mode=cloud,
+swanlab_notification_method=None,
+swanlab_project=ms-swift,
+swanlab_receiver_email=None,
+swanlab_secret=None,
+swanlab_sender_email=None,
+swanlab_smtp_port=None,
+swanlab_smtp_server=None,
+swanlab_token=<SWANLAB_TOKEN>,
+swanlab_webhook_url=None,
+swanlab_workspace=None,
+system=你是专业医疗助手，专注为您提供严谨、安全的医疗健康咨询服务。,
+target_modules=['all-linear'],
+target_parameters=None,
+target_regex=None,
+task_type=causal_lm,
+temperature=0.0,
+template=qwen,
+template_backend=swift,
+tf32=None,
+top_k=None,
+top_logprobs=None,
+top_p=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_dtype=torch.bfloat16,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+trackio_space_id=trackio,
+train_dataloader_shuffle=True,
+train_type=lora,
+trainable_parameters=[],
+trainable_parameters_regex=None,
+truncation_strategy=delete,
+tuner_backend=peft,
+use_chat_template=True,
+use_cpu=False,
+use_dora=False,
+use_flash_ckpt=False,
+use_galore=False,
+use_hf=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_logits_to_keep=None,
+use_mps_device=False,
+use_ray=False,
+use_rslora=False,
+use_swift_lora=False,
+val_dataset=[],
+val_dataset_shuffle=False,
+vera_d_initial=0.1,
+vera_dropout=0.0,
+vera_projection_prng_key=0,
+vera_rank=256,
+vit_gradient_checkpointing=None,
+vit_lr=None,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.1,
+zero_hpz_partition_size=None,
+)
+[INFO:swift] model_kwargs: {'device_map': 'cuda:0', 'dtype': torch.bfloat16}
+Try importing flash-attention for faster inference...
+Warning: import flash_attn rotary fail, please install FlashAttention rotary to get higher efficiency https://github.com/Dao-AILab/flash-attention/tree/main/csrc/rotary
+Warning: import flash_attn rms_norm fail, please install FlashAttention layer_norm to get higher efficiency https://github.com/Dao-AILab/flash-attention/tree/main/csrc/layer_norm
+Warning: import flash_attn fail, please install FlashAttention to get higher efficiency https://github.com/Dao-AILab/flash-attention
+Try importing flash-attention for faster inference...
+Warning: import flash_attn rotary fail, please install FlashAttention rotary to get higher efficiency https://github.com/Dao-AILab/flash-attention/tree/main/csrc/rotary
+Warning: import flash_attn rms_norm fail, please install FlashAttention layer_norm to get higher efficiency https://github.com/Dao-AILab/flash-attention/tree/main/csrc/layer_norm
+Warning: import flash_attn fail, please install FlashAttention to get higher efficiency https://github.com/Dao-AILab/flash-attention
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.05s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.04s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.02it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.03it/s]
+[INFO:swift] model.hf_device_map: {'': device(type='cuda', index=0)}
+[INFO:swift] model_info: ModelInfo(model_type='qwen', model_dir='/root/data1/MyProject/AIDoctor/llm/Qwen/Qwen-1_8B-Chat', torch_dtype=torch.bfloat16, max_model_len=8192, quant_method=None, quant_bits=None, rope_scaling=None, is_moe_model=False, is_multimodal=False, config=QWenConfig {
+  "architectures": [
+    "QWenLMHeadModel"
+  ],
+  "attn_dropout_prob": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen.QWenConfig",
+    "AutoModelForCausalLM": "modeling_qwen.QWenLMHeadModel"
+  },
+  "bf16": true,
+  "dtype": "bfloat16",
+  "emb_dropout_prob": 0.0,
+  "fp16": false,
+  "fp32": false,
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 11008,
+  "kv_channels": 128,
+  "layer_norm_epsilon": 1e-06,
+  "max_position_embeddings": 8192,
+  "model_type": "qwen",
+  "no_bias": true,
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "onnx_safe": null,
+  "pad_token_id": 151643,
+  "rotary_emb_base": 10000,
+  "rotary_pct": 1.0,
+  "scale_attn_weights": true,
+  "seq_length": 8192,
+  "softmax_in_fp32": false,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "QWenTokenizer",
+  "transformers_version": "4.57.6",
+  "use_cache": true,
+  "use_cache_kernel": false,
+  "use_cache_quantization": false,
+  "use_dynamic_ntk": true,
+  "use_flash_attn": true,
+  "use_logn_attn": true,
+  "vocab_size": 151936
+}
+, task_type='causal_lm', num_labels=None)
+[INFO:swift] model.generation_config: GenerationConfig {
+  "chat_format": "chatml",
+  "eos_token_id": 151643,
+  "max_new_tokens": 64,
+  "max_window_size": 6144,
+  "pad_token_id": 151643,
+  "repetition_penalty": 1.1
+}
+
+[INFO:swift] default_system: '你是专业医疗助手，专注为您提供严谨、安全的医疗健康咨询服务。'
+[INFO:swift] max_length: 2048
+[INFO:swift] response_prefix: ''
+[INFO:swift] agent_template: hermes
+[INFO:swift] Start time of running main: 2026-04-16 09:13:56.170997
+[INFO:swift] swift.__version__: 3.12.6
+Map:   0%|          | 0/464898 [00:00<?, ? examples/s]Map:   0%|          | 1000/464898 [00:00<00:50, 9274.37 examples/s]Map:   1%|          | 3000/464898 [00:00<00:45, 10260.49 examples/s]Map:   1%|          | 5000/464898 [00:00<00:44, 10309.90 examples/s]Map:   2%|▏         | 7000/464898 [00:00<00:41, 10908.32 examples/s]Map:   2%|▏         | 9000/464898 [00:00<00:37, 12231.57 examples/s]Map:   2%|▏         | 11000/464898 [00:00<00:34, 13183.05 examples/s]Map:   3%|▎         | 13000/464898 [00:01<00:34, 13272.41 examples/s]Map:   3%|▎         | 15000/464898 [00:01<00:35, 12598.36 examples/s]Map:   4%|▎         | 17000/464898 [00:01<00:36, 12205.94 examples/s]Map:   4%|▍         | 19000/464898 [00:01<00:36, 12335.22 examples/s]Map:   5%|▍         | 21000/464898 [00:01<00:32, 13504.72 examples/s]Map:   5%|▍         | 23000/464898 [00:01<00:30, 14595.61 examples/s]Map:   5%|▌         | 25000/464898 [00:01<00:28, 15429.83 examples/s]Map:   6%|▌         | 27000/464898 [00:02<00:27, 15973.01 examples/s]Map:   6%|▌         | 29000/464898 [00:02<00:26, 16151.59 examples/s]Map:   7%|▋         | 31000/464898 [00:02<00:27, 15939.38 examples/s]Map:   7%|▋         | 33000/464898 [00:02<00:27, 15987.53 examples/s]Map:   8%|▊         | 35000/464898 [00:02<00:26, 16196.08 examples/s]Map:   8%|▊         | 37000/464898 [00:02<00:26, 16147.35 examples/s]Map:   8%|▊         | 39000/464898 [00:02<00:26, 15864.96 examples/s]Map:   9%|▉         | 41000/464898 [00:02<00:26, 15826.52 examples/s]Map:   9%|▉         | 43000/464898 [00:03<00:26, 15926.30 examples/s]Map:  10%|▉         | 45000/464898 [00:03<00:40, 10478.09 examples/s]Map:  10%|█         | 47000/464898 [00:03<00:36, 11548.98 examples/s]Map:  11%|█         | 49000/464898 [00:03<00:32, 12779.19 examples/s]Map:  11%|█         | 51000/464898 [00:03<00:30, 13585.15 examples/s]Map:  11%|█▏        | 53000/464898 [00:03<00:29, 13987.92 examples/s]Map:  12%|█▏        | 55000/464898 [00:04<00:28, 14180.33 examples/s]Map:  12%|█▏        | 57000/464898 [00:04<00:28, 14391.66 examples/s]Map:  13%|█▎        | 59000/464898 [00:04<00:27, 14569.69 examples/s]Map:  13%|█▎        | 61000/464898 [00:04<00:27, 14634.27 examples/s]Map:  14%|█▎        | 63000/464898 [00:04<00:27, 14680.59 examples/s]Map:  14%|█▍        | 65000/464898 [00:04<00:27, 14585.71 examples/s]Map:  14%|█▍        | 67000/464898 [00:04<00:27, 14601.00 examples/s]Map:  15%|█▍        | 69000/464898 [00:04<00:26, 14731.64 examples/s]Map:  15%|█▌        | 71000/464898 [00:05<00:26, 15033.76 examples/s]Map:  16%|█▌        | 73000/464898 [00:05<00:25, 15220.16 examples/s]Map:  16%|█▌        | 75000/464898 [00:05<00:25, 15209.70 examples/s]Map:  17%|█▋        | 77000/464898 [00:05<00:26, 14861.53 examples/s]Map:  17%|█▋        | 79000/464898 [00:05<00:25, 14904.33 examples/s]Map:  17%|█▋        | 81000/464898 [00:05<00:26, 14706.88 examples/s]Map:  18%|█▊        | 83000/464898 [00:05<00:26, 14647.18 examples/s]Map:  18%|█▊        | 85000/464898 [00:06<00:25, 14927.81 examples/s]Map:  19%|█▊        | 87000/464898 [00:06<00:25, 14694.64 examples/s]Map:  19%|█▉        | 89000/464898 [00:06<00:25, 14678.74 examples/s]Map:  20%|█▉        | 91000/464898 [00:06<00:24, 15012.94 examples/s]Map:  20%|██        | 93000/464898 [00:06<00:24, 15247.38 examples/s]Map:  20%|██        | 95000/464898 [00:06<00:23, 15509.40 examples/s]Map:  21%|██        | 97000/464898 [00:06<00:23, 15572.20 examples/s]Map:  21%|██▏       | 99000/464898 [00:06<00:23, 15786.58 examples/s]Map:  22%|██▏       | 101000/464898 [00:07<00:22, 16403.76 examples/s]Map:  22%|██▏       | 103000/464898 [00:07<00:21, 16648.23 examples/s]Map:  23%|██▎       | 105000/464898 [00:07<00:21, 16687.43 examples/s]Map:  23%|██▎       | 107000/464898 [00:07<00:21, 16837.73 examples/s]Map:  23%|██▎       | 109000/464898 [00:07<00:20, 17097.21 examples/s]Map:  24%|██▍       | 111000/464898 [00:07<00:21, 16718.49 examples/s]Map:  24%|██▍       | 113000/464898 [00:07<00:21, 16096.24 examples/s]Map:  25%|██▍       | 115000/464898 [00:07<00:21, 16442.22 examples/s]Map:  25%|██▌       | 117000/464898 [00:07<00:20, 17004.14 examples/s]Map:  26%|██▌       | 119000/464898 [00:08<00:19, 17727.12 examples/s]Map:  26%|██▌       | 121000/464898 [00:08<00:18, 18190.02 examples/s]Map:  27%|██▋       | 124000/464898 [00:08<00:18, 18875.31 examples/s]Map:  27%|██▋       | 127000/464898 [00:08<00:17, 19183.42 examples/s]Map:  28%|██▊       | 129000/464898 [00:08<00:17, 19062.31 examples/s]Map:  28%|██▊       | 131000/464898 [00:08<00:17, 18846.56 examples/s]Map:  29%|██▊       | 133000/464898 [00:08<00:17, 18794.60 examples/s]Map:  29%|██▉       | 137000/464898 [00:09<00:16, 19495.16 examples/s]Map:  30%|███       | 141000/464898 [00:09<00:22, 14162.53 examples/s]Map:  31%|███       | 143000/464898 [00:09<00:21, 15098.94 examples/s]Map:  31%|███       | 145000/464898 [00:09<00:20, 15860.42 examples/s]Map:  32%|███▏      | 147000/464898 [00:09<00:19, 16451.00 examples/s]Map:  32%|███▏      | 149000/464898 [00:09<00:18, 16978.06 examples/s]Map:  32%|███▏      | 151000/464898 [00:09<00:18, 17295.52 examples/s]Map:  33%|███▎      | 153000/464898 [00:10<00:18, 16673.64 examples/s]Map:  33%|███▎      | 155000/464898 [00:10<00:19, 15583.62 examples/s]Map:  34%|███▍      | 157000/464898 [00:10<00:20, 14805.76 examples/s]Map:  34%|███▍      | 159000/464898 [00:10<00:21, 14092.32 examples/s]Map:  35%|███▍      | 161000/464898 [00:10<00:21, 14068.86 examples/s]Map:  35%|███▌      | 164000/464898 [00:10<00:19, 15795.60 examples/s]Map:  36%|███▌      | 166000/464898 [00:10<00:18, 16315.58 examples/s]Map:  36%|███▌      | 168000/464898 [00:11<00:17, 16747.05 examples/s]Map:  37%|███▋      | 170000/464898 [00:11<00:17, 16976.39 examples/s]Map:  37%|███▋      | 172000/464898 [00:11<00:16, 17363.90 examples/s]Map:  38%|███▊      | 175000/464898 [00:11<00:16, 18021.32 examples/s]Map:  38%|███▊      | 178000/464898 [00:11<00:15, 18689.95 examples/s]Map:  39%|███▊      | 180000/464898 [00:11<00:15, 18837.68 examples/s]Map:  39%|███▉      | 182000/464898 [00:11<00:14, 18864.65 examples/s]Map:  40%|███▉      | 184000/464898 [00:11<00:15, 18599.75 examples/s]Map:  40%|████      | 186000/464898 [00:12<00:15, 18197.85 examples/s]Map:  40%|████      | 188000/464898 [00:12<00:15, 18070.34 examples/s]Map:  41%|████      | 190000/464898 [00:12<00:16, 16890.36 examples/s]Map:  41%|████▏     | 192000/464898 [00:12<00:15, 17141.81 examples/s]Map:  42%|████▏     | 194000/464898 [00:12<00:17, 15333.88 examples/s]Map:  42%|████▏     | 196000/464898 [00:12<00:18, 14549.69 examples/s]Map:  43%|████▎     | 198000/464898 [00:12<00:18, 14087.65 examples/s]Map:  43%|████▎     | 200000/464898 [00:13<00:19, 13786.87 examples/s]Map:  43%|████▎     | 202000/464898 [00:13<00:18, 14320.34 examples/s]Map:  44%|████▍     | 204000/464898 [00:13<00:17, 14926.61 examples/s]Map:  44%|████▍     | 206000/464898 [00:13<00:16, 15478.11 examples/s]Map:  45%|████▍     | 208000/464898 [00:13<00:16, 15899.94 examples/s]Map:  45%|████▌     | 210000/464898 [00:13<00:15, 16169.66 examples/s]Map:  46%|████▌     | 212000/464898 [00:13<00:15, 16776.25 examples/s]Map:  46%|████▌     | 214000/464898 [00:13<00:14, 17229.01 examples/s]Map:  46%|████▋     | 216000/464898 [00:13<00:14, 17588.46 examples/s]Map:  47%|████▋     | 218000/464898 [00:14<00:13, 17826.19 examples/s]Map:  47%|████▋     | 220000/464898 [00:14<00:13, 17897.52 examples/s]Map:  48%|████▊     | 222000/464898 [00:14<00:13, 17484.06 examples/s]Map:  48%|████▊     | 224000/464898 [00:14<00:13, 17310.19 examples/s]Map:  49%|████▊     | 226000/464898 [00:14<00:13, 17150.05 examples/s]Map:  49%|████▉     | 228000/464898 [00:14<00:13, 17174.32 examples/s]Map:  49%|████▉     | 230000/464898 [00:14<00:13, 17230.67 examples/s]Map:  50%|████▉     | 232000/464898 [00:14<00:13, 17767.28 examples/s]Map:  50%|█████     | 234000/464898 [00:14<00:12, 18278.64 examples/s]Map:  51%|█████     | 236000/464898 [00:15<00:12, 18520.48 examples/s]Map:  51%|█████     | 238000/464898 [00:15<00:12, 18759.31 examples/s]Map:  52%|█████▏    | 240000/464898 [00:15<00:12, 18632.25 examples/s]Map:  52%|█████▏    | 242000/464898 [00:15<00:12, 18570.95 examples/s]Map:  52%|█████▏    | 244000/464898 [00:15<00:11, 18664.78 examples/s]Map:  53%|█████▎    | 246000/464898 [00:15<00:18, 11872.95 examples/s]Map:  53%|█████▎    | 248000/464898 [00:15<00:16, 13455.54 examples/s]Map:  54%|█████▍    | 250000/464898 [00:16<00:14, 14398.40 examples/s]Map:  54%|█████▍    | 252000/464898 [00:16<00:14, 15034.07 examples/s]Map:  55%|█████▍    | 254000/464898 [00:16<00:13, 15329.39 examples/s]Map:  55%|█████▌    | 256000/464898 [00:16<00:13, 15914.74 examples/s]Map:  55%|█████▌    | 258000/464898 [00:16<00:12, 16293.27 examples/s]Map:  56%|█████▌    | 260000/464898 [00:16<00:12, 16967.82 examples/s]Map:  56%|█████▋    | 262000/464898 [00:16<00:11, 17416.28 examples/s]Map:  57%|█████▋    | 264000/464898 [00:16<00:11, 17710.10 examples/s]Map:  57%|█████▋    | 266000/464898 [00:16<00:11, 18078.87 examples/s]Map:  58%|█████▊    | 268000/464898 [00:17<00:10, 18344.68 examples/s]Map:  58%|█████▊    | 270000/464898 [00:17<00:10, 17895.78 examples/s]Map:  59%|█████▊    | 272000/464898 [00:17<00:11, 16843.18 examples/s]Map:  59%|█████▉    | 274000/464898 [00:17<00:11, 16568.19 examples/s]Map:  59%|█████▉    | 276000/464898 [00:17<00:11, 16379.09 examples/s]Map:  60%|█████▉    | 278000/464898 [00:17<00:11, 16329.37 examples/s]Map:  60%|██████    | 280000/464898 [00:17<00:11, 15960.35 examples/s]Map:  61%|██████    | 282000/464898 [00:17<00:11, 15995.53 examples/s]Map:  61%|██████    | 284000/464898 [00:18<00:11, 16031.60 examples/s]Map:  62%|██████▏   | 286000/464898 [00:18<00:10, 16584.85 examples/s]Map:  62%|██████▏   | 288000/464898 [00:18<00:10, 17246.84 examples/s]Map:  62%|██████▏   | 290000/464898 [00:18<00:09, 17514.33 examples/s]Map:  63%|██████▎   | 292000/464898 [00:18<00:09, 17879.71 examples/s]Map:  63%|██████▎   | 294000/464898 [00:18<00:09, 18136.74 examples/s]Map:  64%|██████▎   | 296000/464898 [00:18<00:09, 17595.05 examples/s]Map:  64%|██████▍   | 298000/464898 [00:18<00:09, 17177.08 examples/s]Map:  65%|██████▍   | 300000/464898 [00:18<00:09, 16999.73 examples/s]Map:  65%|██████▍   | 302000/464898 [00:19<00:09, 16703.54 examples/s]Map:  65%|██████▌   | 304000/464898 [00:19<00:09, 16502.44 examples/s]Map:  66%|██████▌   | 306000/464898 [00:19<00:09, 16435.26 examples/s]Map:  66%|██████▋   | 308000/464898 [00:19<00:09, 16410.68 examples/s]Map:  67%|██████▋   | 310000/464898 [00:19<00:09, 16250.60 examples/s]Map:  67%|██████▋   | 312000/464898 [00:19<00:09, 16268.90 examples/s]Map:  68%|██████▊   | 314000/464898 [00:19<00:08, 16849.14 examples/s]Map:  68%|██████▊   | 316000/464898 [00:19<00:08, 17130.15 examples/s]Map:  68%|██████▊   | 318000/464898 [00:20<00:08, 17326.44 examples/s]Map:  69%|██████▉   | 320000/464898 [00:20<00:08, 17616.47 examples/s]Map:  69%|██████▉   | 322000/464898 [00:20<00:07, 18080.14 examples/s]Map:  70%|██████▉   | 324000/464898 [00:20<00:07, 18016.73 examples/s]Map:  70%|███████   | 326000/464898 [00:20<00:08, 17226.83 examples/s]Map:  71%|███████   | 328000/464898 [00:20<00:08, 16171.56 examples/s]Map:  71%|███████   | 330000/464898 [00:20<00:08, 15689.30 examples/s]Map:  71%|███████▏  | 332000/464898 [00:20<00:08, 15593.61 examples/s]Map:  72%|███████▏  | 334000/464898 [00:21<00:08, 15335.48 examples/s]Map:  72%|███████▏  | 336000/464898 [00:21<00:08, 15135.68 examples/s]Map:  73%|███████▎  | 338000/464898 [00:21<00:08, 15087.08 examples/s]Map:  73%|███████▎  | 340000/464898 [00:21<00:08, 14987.44 examples/s]Map:  74%|███████▎  | 342000/464898 [00:21<00:08, 14973.23 examples/s]Map:  74%|███████▍  | 344000/464898 [00:21<00:07, 15171.79 examples/s]Map:  74%|███████▍  | 346000/464898 [00:21<00:07, 16049.45 examples/s]Map:  75%|███████▍  | 348000/464898 [00:21<00:06, 16901.93 examples/s]Map:  75%|███████▌  | 350000/464898 [00:22<00:10, 11045.53 examples/s]Map:  76%|███████▌  | 352000/464898 [00:22<00:09, 12482.67 examples/s]Map:  76%|███████▌  | 354000/464898 [00:22<00:08, 13725.83 examples/s]Map:  77%|███████▋  | 356000/464898 [00:22<00:07, 14747.95 examples/s]Map:  77%|███████▋  | 358000/464898 [00:22<00:07, 15130.45 examples/s]Map:  77%|███████▋  | 360000/464898 [00:22<00:06, 15285.53 examples/s]Map:  78%|███████▊  | 362000/464898 [00:22<00:06, 15589.87 examples/s]Map:  78%|███████▊  | 364000/464898 [00:23<00:06, 15667.50 examples/s]Map:  79%|███████▊  | 366000/464898 [00:23<00:06, 15695.82 examples/s]Map:  79%|███████▉  | 368000/464898 [00:23<00:06, 15825.39 examples/s]Map:  80%|███████▉  | 370000/464898 [00:23<00:05, 16140.81 examples/s]Map:  80%|████████  | 372000/464898 [00:23<00:05, 16901.90 examples/s]Map:  80%|████████  | 374000/464898 [00:23<00:05, 17499.63 examples/s]Map:  81%|████████  | 376000/464898 [00:23<00:05, 17706.93 examples/s]Map:  81%|████████▏ | 378000/464898 [00:23<00:04, 17517.64 examples/s]Map:  82%|████████▏ | 380000/464898 [00:23<00:04, 17735.09 examples/s]Map:  82%|████████▏ | 382000/464898 [00:24<00:04, 17982.03 examples/s]Map:  83%|████████▎ | 384000/464898 [00:24<00:04, 17933.07 examples/s]Map:  83%|████████▎ | 386000/464898 [00:24<00:04, 17882.57 examples/s]Map:  83%|████████▎ | 388000/464898 [00:24<00:05, 14904.31 examples/s]Map:  84%|████████▍ | 390000/464898 [00:24<00:05, 13798.17 examples/s]Map:  84%|████████▍ | 392000/464898 [00:24<00:05, 13122.32 examples/s]Map:  85%|████████▍ | 394000/464898 [00:25<00:05, 12659.07 examples/s]Map:  86%|████████▌ | 399000/464898 [00:25<00:03, 19071.49 examples/s]Map:  87%|████████▋ | 404000/464898 [00:25<00:02, 24276.81 examples/s]Map:  88%|████████▊ | 409000/464898 [00:25<00:02, 26999.18 examples/s]Map:  89%|████████▊ | 412000/464898 [00:25<00:02, 24741.89 examples/s]Map:  89%|████████▉ | 416000/464898 [00:25<00:02, 24199.56 examples/s]Map:  90%|█████████ | 420000/464898 [00:25<00:01, 24525.03 examples/s]Map:  91%|█████████ | 424000/464898 [00:26<00:01, 25652.05 examples/s]Map:  92%|█████████▏| 428000/464898 [00:26<00:01, 28407.84 examples/s]Map:  93%|█████████▎| 432000/464898 [00:26<00:01, 30657.63 examples/s]Map:  94%|█████████▍| 436000/464898 [00:26<00:00, 32517.73 examples/s]Map:  95%|█████████▍| 440000/464898 [00:26<00:00, 34059.33 examples/s]Map:  96%|█████████▌| 444000/464898 [00:26<00:00, 34743.32 examples/s]Map:  96%|█████████▋| 448000/464898 [00:26<00:00, 35582.53 examples/s]Map:  97%|█████████▋| 452000/464898 [00:26<00:00, 36122.89 examples/s]Map:  98%|█████████▊| 456000/464898 [00:26<00:00, 36369.04 examples/s]Map:  99%|█████████▉| 460000/464898 [00:27<00:00, 36736.50 examples/s]Map: 100%|█████████▉| 464000/464898 [00:27<00:00, 36912.40 examples/s]Map: 100%|██████████| 464898/464898 [00:27<00:00, 17038.34 examples/s]
+Map:   0%|          | 0/13 [00:00<?, ? examples/s]Map: 100%|██████████| 13/13 [00:00<00:00, 1558.73 examples/s]
+Map:   0%|          | 0/464911 [00:00<?, ? examples/s]Map:   0%|          | 1000/464911 [00:01<10:41, 722.99 examples/s]Map:   0%|          | 2000/464911 [00:02<10:46, 716.45 examples/s]Map:   1%|          | 3000/464911 [00:04<10:37, 724.54 examples/s]Map:   1%|          | 4000/464911 [00:05<10:41, 718.45 examples/s]Map:   1%|          | 5000/464911 [00:06<10:40, 718.13 examples/s]Map:   1%|▏         | 6000/464911 [00:08<10:38, 719.29 examples/s]Map:   2%|▏         | 7000/464911 [00:09<10:19, 739.00 examples/s]Map:   2%|▏         | 8000/464911 [00:11<10:47, 705.87 examples/s]Map:   2%|▏         | 9000/464911 [00:12<10:39, 713.44 examples/s]Map:   2%|▏         | 10000/464911 [00:13<10:31, 720.01 examples/s]Map:   2%|▏         | 11000/464911 [00:15<10:31, 718.22 examples/s]Map:   3%|▎         | 12000/464911 [00:16<10:49, 697.15 examples/s]Map:   3%|▎         | 13000/464911 [00:18<10:33, 713.01 examples/s]Map:   3%|▎         | 14000/464911 [00:19<10:23, 723.36 examples/s]Map:   3%|▎         | 15000/464911 [00:20<10:32, 711.44 examples/s]Map:   3%|▎         | 16000/464911 [00:22<10:33, 708.08 examples/s]Map:   4%|▎         | 17000/464911 [00:23<10:32, 707.95 examples/s]Map:   4%|▍         | 18000/464911 [00:25<10:19, 721.81 examples/s]Map:   4%|▍         | 19000/464911 [00:26<10:10, 730.26 examples/s]Map:   4%|▍         | 20000/464911 [00:28<10:43, 691.43 examples/s]Map:   5%|▍         | 21000/464911 [00:29<11:17, 655.05 examples/s]Map:   5%|▍         | 22000/464911 [00:31<11:10, 660.45 examples/s]Map:   5%|▍         | 23000/464911 [00:32<11:00, 669.35 examples/s]Map:   5%|▌         | 24000/464911 [00:34<10:53, 674.39 examples/s]Map:   5%|▌         | 25000/464911 [00:35<10:54, 672.37 examples/s]Map:   6%|▌         | 26000/464911 [00:37<10:41, 684.19 examples/s]Map:   6%|▌         | 27000/464911 [00:38<10:40, 683.82 examples/s]Map:   6%|▌         | 28000/464911 [00:39<10:38, 684.62 examples/s]Map:   6%|▌         | 29000/464911 [00:41<10:36, 685.12 examples/s]Map:   6%|▋         | 30000/464911 [00:42<10:19, 701.87 examples/s]Map:   7%|▋         | 31000/464911 [00:44<10:10, 710.22 examples/s]Map:   7%|▋         | 32000/464911 [00:45<10:05, 714.80 examples/s]Map:   7%|▋         | 33000/464911 [00:46<10:08, 709.82 examples/s]Map:   7%|▋         | 34000/464911 [00:48<10:09, 707.07 examples/s]Map:   8%|▊         | 35000/464911 [00:49<10:15, 698.17 examples/s]Map:   8%|▊         | 36000/464911 [00:51<10:20, 691.24 examples/s]Map:   8%|▊         | 37000/464911 [00:52<10:20, 689.59 examples/s]Map:   8%|▊         | 38000/464911 [00:54<10:14, 695.05 examples/s]Map:   8%|▊         | 39000/464911 [00:55<10:05, 703.06 examples/s]Map:   9%|▊         | 40000/464911 [00:57<10:05, 701.94 examples/s]Map:   9%|▉         | 41000/464911 [00:58<10:00, 706.34 examples/s]Map:   9%|▉         | 42000/464911 [00:59<09:42, 726.01 examples/s]Map:   9%|▉         | 43000/464911 [01:00<09:28, 742.47 examples/s]Map:   9%|▉         | 44000/464911 [01:02<09:44, 720.52 examples/s]Map:  10%|▉         | 45000/464911 [01:04<10:01, 697.89 examples/s]Map:  10%|▉         | 46000/464911 [01:05<10:09, 687.05 examples/s]Map:  10%|█         | 47000/464911 [01:07<10:18, 675.34 examples/s]Map:  10%|█         | 48000/464911 [01:08<10:14, 678.51 examples/s]Map:  11%|█         | 49000/464911 [01:10<10:19, 671.27 examples/s]Map:  11%|█         | 50000/464911 [01:11<10:15, 673.84 examples/s]Map:  11%|█         | 51000/464911 [01:12<10:08, 680.46 examples/s]Map:  11%|█         | 52000/464911 [01:14<09:49, 699.86 examples/s]Map:  11%|█▏        | 53000/464911 [01:15<09:35, 715.53 examples/s]Map:  12%|█▏        | 54000/464911 [01:17<09:32, 717.72 examples/s]Map:  12%|█▏        | 55000/464911 [01:18<09:43, 702.96 examples/s]Map:  12%|█▏        | 56000/464911 [01:19<09:50, 692.41 examples/s]Map:  12%|█▏        | 57000/464911 [01:21<09:47, 694.60 examples/s]Map:  12%|█▏        | 58000/464911 [01:22<09:56, 682.12 examples/s]Map:  13%|█▎        | 59000/464911 [01:24<09:55, 682.19 examples/s]Map:  13%|█▎        | 60000/464911 [01:25<09:55, 679.68 examples/s]Map:  13%|█▎        | 61000/464911 [01:27<09:53, 680.24 examples/s]Map:  13%|█▎        | 62000/464911 [01:28<09:46, 686.61 examples/s]Map:  14%|█▎        | 63000/464911 [01:30<09:30, 704.76 examples/s]Map:  14%|█▍        | 64000/464911 [01:31<09:17, 718.74 examples/s]Map:  14%|█▍        | 65000/464911 [01:32<09:19, 714.72 examples/s]Map:  14%|█▍        | 66000/464911 [01:34<09:16, 716.69 examples/s]Map:  14%|█▍        | 67000/464911 [01:35<09:30, 698.06 examples/s]Map:  15%|█▍        | 68000/464911 [01:37<09:34, 690.38 examples/s]Map:  15%|█▍        | 69000/464911 [01:38<09:37, 685.49 examples/s]Map:  15%|█▌        | 70000/464911 [01:40<09:42, 677.88 examples/s]Map:  15%|█▌        | 71000/464911 [01:41<09:29, 692.06 examples/s]Map:  15%|█▌        | 72000/464911 [01:43<09:39, 677.71 examples/s]Map:  16%|█▌        | 73000/464911 [01:44<09:34, 682.11 examples/s]Map:  16%|█▌        | 74000/464911 [01:46<09:26, 689.95 examples/s]Map:  16%|█▌        | 75000/464911 [01:47<09:16, 700.16 examples/s]Map:  16%|█▋        | 76000/464911 [01:48<09:07, 710.69 examples/s]Map:  17%|█▋        | 77000/464911 [01:50<09:07, 708.87 examples/s]Map:  17%|█▋        | 78000/464911 [01:51<09:13, 699.52 examples/s]Map:  17%|█▋        | 79000/464911 [01:53<09:30, 675.92 examples/s]Map:  17%|█▋        | 80000/464911 [01:54<09:35, 669.28 examples/s]Map:  17%|█▋        | 81000/464911 [01:56<09:37, 665.19 examples/s]Map:  18%|█▊        | 82000/464911 [01:57<09:42, 657.87 examples/s]Map:  18%|█▊        | 83000/464911 [01:59<09:28, 671.60 examples/s]Map:  18%|█▊        | 84000/464911 [02:00<09:31, 666.71 examples/s]Map:  18%|█▊        | 85000/464911 [02:02<09:23, 673.70 examples/s]Map:  18%|█▊        | 86000/464911 [02:04<09:54, 637.80 examples/s]Map:  19%|█▊        | 87000/464911 [02:05<09:24, 669.88 examples/s]Map:  19%|█▉        | 88000/464911 [02:06<09:18, 675.09 examples/s]Map:  19%|█▉        | 89000/464911 [02:08<09:17, 673.69 examples/s]Map:  19%|█▉        | 90000/464911 [02:09<09:12, 678.12 examples/s]Map:  20%|█▉        | 91000/464911 [02:11<09:09, 680.31 examples/s]Map:  20%|█▉        | 92000/464911 [02:12<09:10, 677.72 examples/s]Map:  20%|██        | 93000/464911 [02:14<09:02, 685.08 examples/s]Map:  20%|██        | 94000/464911 [02:15<08:59, 687.00 examples/s]Map:  20%|██        | 95000/464911 [02:16<08:56, 689.47 examples/s]Map:  21%|██        | 96000/464911 [02:18<08:49, 696.80 examples/s]Map:  21%|██        | 97000/464911 [02:19<08:41, 705.94 examples/s]Map:  21%|██        | 98000/464911 [02:21<08:55, 685.70 examples/s]Map:  21%|██▏       | 99000/464911 [02:22<09:05, 671.19 examples/s]Map:  22%|██▏       | 100000/464911 [02:24<09:07, 666.59 examples/s]Map:  22%|██▏       | 101000/464911 [02:25<09:09, 662.06 examples/s]Map:  22%|██▏       | 102000/464911 [02:27<09:18, 650.10 examples/s]Map:  22%|██▏       | 103000/464911 [02:29<09:11, 656.18 examples/s]Map:  22%|██▏       | 104000/464911 [02:30<09:03, 664.24 examples/s]Map:  23%|██▎       | 105000/464911 [02:31<08:58, 668.30 examples/s]Map:  23%|██▎       | 106000/464911 [02:33<08:48, 678.94 examples/s]Map:  23%|██▎       | 107000/464911 [02:34<08:45, 680.98 examples/s]Map:  23%|██▎       | 108000/464911 [02:36<08:54, 667.34 examples/s]Map:  23%|██▎       | 109000/464911 [02:37<08:47, 674.53 examples/s]Map:  24%|██▎       | 110000/464911 [02:39<08:44, 676.48 examples/s]Map:  24%|██▍       | 111000/464911 [02:40<08:36, 685.04 examples/s]Map:  24%|██▍       | 112000/464911 [02:42<08:37, 682.18 examples/s]Map:  24%|██▍       | 113000/464911 [02:43<08:39, 676.99 examples/s]Map:  25%|██▍       | 114000/464911 [02:45<08:35, 680.79 examples/s]Map:  25%|██▍       | 115000/464911 [02:46<08:45, 665.95 examples/s]Map:  25%|██▍       | 116000/464911 [02:48<08:40, 670.35 examples/s]Map:  25%|██▌       | 117000/464911 [02:49<08:27, 685.02 examples/s]Map:  25%|██▌       | 118000/464911 [02:51<08:33, 675.03 examples/s]Map:  26%|██▌       | 119000/464911 [02:52<08:21, 690.08 examples/s]Map:  26%|██▌       | 120000/464911 [02:53<08:17, 693.87 examples/s]Map:  26%|██▌       | 121000/464911 [02:55<08:19, 688.97 examples/s]Map:  26%|██▌       | 122000/464911 [02:56<08:25, 678.19 examples/s]Map:  26%|██▋       | 123000/464911 [02:58<08:32, 667.33 examples/s]Map:  27%|██▋       | 124000/464911 [02:59<08:30, 667.89 examples/s]Map:  27%|██▋       | 125000/464911 [03:01<08:23, 675.63 examples/s]Map:  27%|██▋       | 126000/464911 [03:02<08:17, 681.13 examples/s]Map:  27%|██▋       | 127000/464911 [03:04<08:23, 671.13 examples/s]Map:  28%|██▊       | 128000/464911 [03:05<08:24, 668.27 examples/s]Map:  28%|██▊       | 129000/464911 [03:07<08:09, 686.55 examples/s]Map:  28%|██▊       | 130000/464911 [03:08<08:08, 685.70 examples/s]Map:  28%|██▊       | 131000/464911 [03:10<07:48, 712.30 examples/s]Map:  28%|██▊       | 132000/464911 [03:11<07:42, 720.25 examples/s]Map:  29%|██▊       | 133000/464911 [03:12<07:52, 701.72 examples/s]Map:  29%|██▉       | 134000/464911 [03:14<07:54, 697.88 examples/s]Map:  29%|██▉       | 135000/464911 [03:15<07:52, 697.77 examples/s]Map:  29%|██▉       | 136000/464911 [03:17<07:50, 699.46 examples/s]Map:  29%|██▉       | 137000/464911 [03:18<07:49, 698.03 examples/s]Map:  30%|██▉       | 138000/464911 [03:20<07:47, 699.35 examples/s]Map:  30%|██▉       | 139000/464911 [03:21<07:52, 689.28 examples/s]Map:  30%|███       | 140000/464911 [03:23<08:17, 652.81 examples/s]Map:  30%|███       | 141000/464911 [03:24<07:53, 683.45 examples/s]Map:  31%|███       | 142000/464911 [03:25<07:39, 703.40 examples/s]Map:  31%|███       | 143000/464911 [03:27<07:38, 701.96 examples/s]Map:  31%|███       | 144000/464911 [03:28<07:32, 708.57 examples/s]Map:  31%|███       | 145000/464911 [03:30<07:33, 705.62 examples/s]Map:  31%|███▏      | 146000/464911 [03:31<07:32, 704.42 examples/s]Map:  32%|███▏      | 147000/464911 [03:33<07:35, 698.64 examples/s]Map:  32%|███▏      | 148000/464911 [03:34<07:34, 697.21 examples/s]Map:  32%|███▏      | 149000/464911 [03:35<07:32, 697.60 examples/s]Map:  32%|███▏      | 150000/464911 [03:37<07:21, 712.67 examples/s]Map:  32%|███▏      | 151000/464911 [03:38<07:09, 730.07 examples/s]Map:  33%|███▎      | 152000/464911 [03:39<06:59, 746.12 examples/s]Map:  33%|███▎      | 153000/464911 [03:41<06:53, 753.82 examples/s]Map:  33%|███▎      | 154000/464911 [03:42<07:00, 740.11 examples/s]Map:  33%|███▎      | 155000/464911 [03:43<07:01, 735.28 examples/s]Map:  34%|███▎      | 156000/464911 [03:45<07:05, 726.77 examples/s]Map:  34%|███▍      | 157000/464911 [03:46<07:07, 720.48 examples/s]Map:  34%|███▍      | 158000/464911 [03:48<07:11, 711.60 examples/s]Map:  34%|███▍      | 159000/464911 [03:49<07:16, 701.39 examples/s]Map:  34%|███▍      | 160000/464911 [03:51<07:19, 693.65 examples/s]Map:  35%|███▍      | 161000/464911 [03:52<07:17, 694.17 examples/s]Map:  35%|███▍      | 162000/464911 [03:53<07:02, 716.48 examples/s]Map:  35%|███▌      | 163000/464911 [03:55<06:55, 726.35 examples/s]Map:  35%|███▌      | 164000/464911 [03:56<06:45, 741.99 examples/s]Map:  35%|███▌      | 165000/464911 [03:57<06:49, 732.46 examples/s]Map:  36%|███▌      | 166000/464911 [03:59<06:57, 716.10 examples/s]Map:  36%|███▌      | 167000/464911 [04:00<07:00, 707.69 examples/s]Map:  36%|███▌      | 168000/464911 [04:02<07:01, 704.84 examples/s]Map:  36%|███▋      | 169000/464911 [04:03<07:02, 700.26 examples/s]Map:  37%|███▋      | 170000/464911 [04:05<07:02, 697.46 examples/s]Map:  37%|███▋      | 171000/464911 [04:06<06:59, 701.30 examples/s]Map:  37%|███▋      | 172000/464911 [04:07<07:02, 693.26 examples/s]Map:  37%|███▋      | 173000/464911 [04:09<06:57, 699.34 examples/s]Map:  37%|███▋      | 174000/464911 [04:10<06:40, 725.70 examples/s]Map:  38%|███▊      | 175000/464911 [04:11<06:30, 742.09 examples/s]Map:  38%|███▊      | 176000/464911 [04:13<06:22, 756.17 examples/s]Map:  38%|███▊      | 177000/464911 [04:14<06:20, 756.44 examples/s]Map:  38%|███▊      | 178000/464911 [04:15<06:27, 740.79 examples/s]Map:  39%|███▊      | 179000/464911 [04:17<06:33, 727.28 examples/s]Map:  39%|███▊      | 180000/464911 [04:18<06:34, 722.00 examples/s]Map:  39%|███▉      | 181000/464911 [04:20<06:38, 713.28 examples/s]Map:  39%|███▉      | 182000/464911 [04:21<06:34, 717.70 examples/s]Map:  39%|███▉      | 183000/464911 [04:23<06:34, 714.02 examples/s]Map:  40%|███▉      | 184000/464911 [04:24<06:25, 728.60 examples/s]Map:  40%|███▉      | 185000/464911 [04:25<06:17, 741.30 examples/s]Map:  40%|████      | 186000/464911 [04:26<06:12, 748.57 examples/s][INFO:swift] Traceback (most recent call last):
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/dataset/preprocessor/core.py", line 178, in batched_preprocess
+    row = self.preprocess(row)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/dataset/utils.py", line 326, in preprocess
+    encoded = super().preprocess(row)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/dataset/utils.py", line 320, in preprocess
+    return self.template.encode(row, return_length=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/utils/utils.py", line 498, in new_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/template/base.py", line 523, in encode
+    encoded = self._encode_truncated(chosen)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/template/base.py", line 1297, in _encode_truncated
+    raise MaxLengthError(f'Current length of row({length}) is larger'
+swift.llm.template.base.MaxLengthError: Current length of row(2174) is larger than the max_length(2048).
+
+[WARNING:swift] 👆👆👆There are errors in the dataset, the data will be deleted
+Map:  40%|████      | 187000/464911 [04:28<06:09, 752.37 examples/s]Map:  40%|████      | 188000/464911 [04:29<06:07, 754.02 examples/s]Map:  41%|████      | 189000/464911 [04:30<06:10, 744.87 examples/s]Map:  41%|████      | 190000/464911 [04:32<06:14, 734.02 examples/s]Map:  41%|████      | 191000/464911 [04:33<06:17, 726.48 examples/s]Map:  41%|████▏     | 192000/464911 [04:35<06:16, 725.67 examples/s]Map:  42%|████▏     | 193000/464911 [04:36<06:15, 723.88 examples/s]Map:  42%|████▏     | 194000/464911 [04:37<06:21, 710.94 examples/s]Map:  42%|████▏     | 195000/464911 [04:39<06:17, 714.32 examples/s]Map:  42%|████▏     | 196000/464911 [04:40<06:09, 727.34 examples/s]Map:  42%|████▏     | 197000/464911 [04:41<05:59, 744.60 examples/s]Map:  43%|████▎     | 198000/464911 [04:43<05:55, 750.01 examples/s]Map:  43%|████▎     | 199000/464911 [04:44<05:47, 764.92 examples/s]Map:  43%|████▎     | 200000/464911 [04:45<05:50, 756.47 examples/s]Map:  43%|████▎     | 201000/464911 [04:47<05:55, 741.96 examples/s]Map:  43%|████▎     | 202000/464911 [04:48<05:58, 732.73 examples/s]Map:  44%|████▎     | 203000/464911 [04:50<05:58, 731.58 examples/s]Map:  44%|████▍     | 204000/464911 [04:51<05:58, 728.46 examples/s]Map:  44%|████▍     | 205000/464911 [04:52<06:01, 718.52 examples/s]Map:  44%|████▍     | 206000/464911 [04:54<06:02, 714.57 examples/s]Map:  45%|████▍     | 207000/464911 [04:55<06:02, 711.35 examples/s]Map:  45%|████▍     | 208000/464911 [04:57<05:56, 721.32 examples/s]Map:  45%|████▍     | 209000/464911 [04:58<05:46, 737.89 examples/s]Map:  45%|████▌     | 210000/464911 [04:59<05:39, 750.90 examples/s]Map:  45%|████▌     | 211000/464911 [05:00<05:35, 757.06 examples/s]Map:  46%|████▌     | 212000/464911 [05:02<05:40, 742.96 examples/s]Map:  46%|████▌     | 213000/464911 [05:03<05:47, 725.31 examples/s]Map:  46%|████▌     | 214000/464911 [05:05<05:51, 712.89 examples/s]Map:  46%|████▌     | 215000/464911 [05:06<05:53, 706.24 examples/s]Map:  46%|████▋     | 216000/464911 [05:08<05:57, 696.00 examples/s]Map:  47%|████▋     | 217000/464911 [05:09<05:55, 697.72 examples/s]Map:  47%|████▋     | 218000/464911 [05:10<05:52, 700.60 examples/s]Map:  47%|████▋     | 219000/464911 [05:12<05:50, 702.48 examples/s]Map:  47%|████▋     | 220000/464911 [05:13<05:40, 719.24 examples/s]Map:  48%|████▊     | 221000/464911 [05:15<05:35, 727.96 examples/s]Map:  48%|████▊     | 222000/464911 [05:16<05:26, 743.90 examples/s]Map:  48%|████▊     | 223000/464911 [05:17<05:24, 746.45 examples/s]Map:  48%|████▊     | 224000/464911 [05:19<05:29, 731.26 examples/s]Map:  48%|████▊     | 225000/464911 [05:20<05:31, 723.72 examples/s]Map:  49%|████▊     | 226000/464911 [05:21<05:33, 717.00 examples/s]Map:  49%|████▉     | 227000/464911 [05:23<05:36, 706.82 examples/s]Map:  49%|████▉     | 228000/464911 [05:25<05:52, 672.89 examples/s]Map:  49%|████▉     | 229000/464911 [05:26<05:43, 686.74 examples/s]Map:  49%|████▉     | 230000/464911 [05:27<05:36, 698.68 examples/s]Map:  50%|████▉     | 231000/464911 [05:29<05:24, 720.45 examples/s]Map:  50%|████▉     | 232000/464911 [05:30<05:17, 734.16 examples/s]Map:  50%|█████     | 233000/464911 [05:31<05:09, 750.40 examples/s]Map:  50%|█████     | 234000/464911 [05:32<05:08, 749.20 examples/s]Map:  51%|█████     | 235000/464911 [05:34<05:13, 734.46 examples/s]Map:  51%|█████     | 236000/464911 [05:35<05:17, 721.51 examples/s]Map:  51%|█████     | 237000/464911 [05:37<05:21, 707.87 examples/s]Map:  51%|█████     | 238000/464911 [05:38<05:18, 712.48 examples/s]Map:  51%|█████▏    | 239000/464911 [05:40<05:18, 709.68 examples/s]Map:  52%|█████▏    | 240000/464911 [05:41<05:14, 715.83 examples/s]Map:  52%|█████▏    | 241000/464911 [05:42<05:12, 717.00 examples/s]Map:  52%|█████▏    | 242000/464911 [05:44<05:03, 734.28 examples/s]Map:  52%|█████▏    | 243000/464911 [05:45<04:56, 748.94 examples/s]Map:  52%|█████▏    | 244000/464911 [05:46<04:54, 750.92 examples/s]Map:  53%|█████▎    | 245000/464911 [05:48<04:58, 737.19 examples/s]Map:  53%|█████▎    | 246000/464911 [05:49<04:57, 736.96 examples/s]Map:  53%|█████▎    | 247000/464911 [05:50<04:57, 731.58 examples/s]Map:  53%|█████▎    | 248000/464911 [05:52<05:00, 721.34 examples/s]Map:  54%|█████▎    | 249000/464911 [05:53<05:02, 714.02 examples/s]Map:  54%|█████▍    | 250000/464911 [05:55<05:03, 708.12 examples/s]Map:  54%|█████▍    | 251000/464911 [05:56<05:03, 704.46 examples/s]Map:  54%|█████▍    | 252000/464911 [05:58<05:04, 698.57 examples/s]Map:  54%|█████▍    | 253000/464911 [05:59<05:02, 701.38 examples/s]Map:  55%|█████▍    | 254000/464911 [06:00<04:52, 721.27 examples/s]Map:  55%|█████▍    | 255000/464911 [06:02<04:45, 735.11 examples/s]Map:  55%|█████▌    | 256000/464911 [06:03<04:41, 743.26 examples/s]Map:  55%|█████▌    | 257000/464911 [06:04<04:34, 757.76 examples/s]Map:  55%|█████▌    | 258000/464911 [06:06<04:41, 735.79 examples/s]Map:  56%|█████▌    | 259000/464911 [06:07<04:45, 720.10 examples/s]Map:  56%|█████▌    | 260000/464911 [06:09<04:48, 710.83 examples/s]Map:  56%|█████▌    | 261000/464911 [06:10<04:47, 708.46 examples/s]Map:  56%|█████▋    | 262000/464911 [06:11<04:45, 710.17 examples/s]Map:  57%|█████▋    | 263000/464911 [06:13<04:45, 706.76 examples/s]Map:  57%|█████▋    | 264000/464911 [06:14<04:44, 705.39 examples/s]Map:  57%|█████▋    | 265000/464911 [06:16<04:39, 714.54 examples/s]Map:  57%|█████▋    | 266000/464911 [06:17<04:30, 734.68 examples/s]Map:  57%|█████▋    | 267000/464911 [06:18<04:25, 746.45 examples/s]Map:  58%|█████▊    | 268000/464911 [06:19<04:20, 755.42 examples/s]Map:  58%|█████▊    | 269000/464911 [06:21<04:19, 754.97 examples/s]Map:  58%|█████▊    | 270000/464911 [06:22<04:26, 730.21 examples/s]Map:  58%|█████▊    | 271000/464911 [06:24<04:27, 726.21 examples/s]Map:  59%|█████▊    | 272000/464911 [06:25<04:27, 720.38 examples/s]Map:  59%|█████▊    | 273000/464911 [06:27<04:29, 712.64 examples/s]Map:  59%|█████▉    | 274000/464911 [06:28<04:29, 707.47 examples/s]Map:  59%|█████▉    | 275000/464911 [06:29<04:27, 710.39 examples/s]Map:  59%|█████▉    | 276000/464911 [06:31<04:22, 720.14 examples/s]Map:  60%|█████▉    | 277000/464911 [06:32<04:17, 729.84 examples/s]Map:  60%|█████▉    | 278000/464911 [06:33<04:10, 747.44 examples/s]Map:  60%|██████    | 279000/464911 [06:35<04:07, 752.25 examples/s]Map:  60%|██████    | 280000/464911 [06:36<04:21, 708.22 examples/s]Map:  60%|██████    | 281000/464911 [06:38<04:19, 710.02 examples/s]Map:  61%|██████    | 282000/464911 [06:39<04:16, 712.64 examples/s]Map:  61%|██████    | 283000/464911 [06:40<04:15, 711.50 examples/s]Map:  61%|██████    | 284000/464911 [06:42<04:14, 710.26 examples/s]Map:  61%|██████▏   | 285000/464911 [06:43<04:11, 714.50 examples/s]Map:  62%|██████▏   | 286000/464911 [06:45<04:11, 710.76 examples/s]Map:  62%|██████▏   | 287000/464911 [06:46<04:09, 713.61 examples/s]Map:  62%|██████▏   | 288000/464911 [06:47<03:58, 741.07 examples/s]Map:  62%|██████▏   | 289000/464911 [06:48<03:50, 763.54 examples/s]Map:  62%|██████▏   | 290000/464911 [06:50<03:45, 774.97 examples/s]Map:  63%|██████▎   | 291000/464911 [06:51<03:43, 778.33 examples/s]Map:  63%|██████▎   | 292000/464911 [06:52<03:48, 755.48 examples/s]Map:  63%|██████▎   | 293000/464911 [06:54<03:48, 751.99 examples/s]Map:  63%|██████▎   | 294000/464911 [06:55<03:49, 745.36 examples/s]Map:  63%|██████▎   | 295000/464911 [06:57<03:52, 730.56 examples/s]Map:  64%|██████▎   | 296000/464911 [06:58<03:54, 720.32 examples/s]Map:  64%|██████▍   | 297000/464911 [06:59<03:54, 716.91 examples/s]Map:  64%|██████▍   | 298000/464911 [07:01<03:53, 716.23 examples/s]Map:  64%|██████▍   | 299000/464911 [07:02<03:51, 717.28 examples/s]Map:  65%|██████▍   | 300000/464911 [07:03<03:42, 742.01 examples/s]Map:  65%|██████▍   | 301000/464911 [07:05<03:34, 763.37 examples/s]Map:  65%|██████▍   | 302000/464911 [07:06<03:30, 772.49 examples/s]Map:  65%|██████▌   | 303000/464911 [07:07<03:31, 767.31 examples/s]Map:  65%|██████▌   | 304000/464911 [07:09<03:32, 756.10 examples/s]Map:  66%|██████▌   | 305000/464911 [07:10<03:31, 755.44 examples/s]Map:  66%|██████▌   | 306000/464911 [07:11<03:32, 749.06 examples/s][INFO:swift] Traceback (most recent call last):
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/dataset/preprocessor/core.py", line 178, in batched_preprocess
+    row = self.preprocess(row)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/dataset/utils.py", line 326, in preprocess
+    encoded = super().preprocess(row)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/dataset/utils.py", line 320, in preprocess
+    return self.template.encode(row, return_length=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/utils/utils.py", line 498, in new_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/template/base.py", line 523, in encode
+    encoded = self._encode_truncated(chosen)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/template/base.py", line 1297, in _encode_truncated
+    raise MaxLengthError(f'Current length of row({length}) is larger'
+swift.llm.template.base.MaxLengthError: Current length of row(2241) is larger than the max_length(2048).
+
+[WARNING:swift] 👆👆👆There are errors in the dataset, the data will be deleted
+Map:  66%|██████▌   | 307000/464911 [07:13<03:37, 726.35 examples/s]Map:  66%|██████▌   | 308000/464911 [07:14<03:33, 733.46 examples/s]Map:  66%|██████▋   | 309000/464911 [07:15<03:32, 732.55 examples/s]Map:  67%|██████▋   | 310000/464911 [07:17<03:32, 730.49 examples/s]Map:  67%|██████▋   | 311000/464911 [07:18<03:33, 720.09 examples/s]Map:  67%|██████▋   | 312000/464911 [07:19<03:25, 744.13 examples/s]Map:  67%|██████▋   | 313000/464911 [07:21<03:20, 757.85 examples/s]Map:  68%|██████▊   | 314000/464911 [07:22<03:16, 768.95 examples/s]Map:  68%|██████▊   | 315000/464911 [07:23<03:11, 781.21 examples/s]Map:  68%|██████▊   | 316000/464911 [07:25<03:14, 765.29 examples/s]Map:  68%|██████▊   | 317000/464911 [07:26<03:16, 753.34 examples/s]Map:  68%|██████▊   | 318000/464911 [07:27<03:18, 740.38 examples/s]Map:  69%|██████▊   | 319000/464911 [07:29<03:18, 735.79 examples/s]Map:  69%|██████▉   | 320000/464911 [07:30<03:19, 727.81 examples/s]Map:  69%|██████▉   | 321000/464911 [07:32<03:19, 721.94 examples/s]Map:  69%|██████▉   | 322000/464911 [07:33<03:17, 724.41 examples/s]Map:  69%|██████▉   | 323000/464911 [07:34<03:10, 745.56 examples/s]Map:  70%|██████▉   | 324000/464911 [07:35<03:05, 759.89 examples/s]Map:  70%|██████▉   | 325000/464911 [07:37<03:00, 775.32 examples/s]Map:  70%|███████   | 326000/464911 [07:38<03:06, 746.02 examples/s]Map:  70%|███████   | 327000/464911 [07:40<03:08, 732.71 examples/s]Map:  71%|███████   | 328000/464911 [07:41<03:07, 731.85 examples/s]Map:  71%|███████   | 329000/464911 [07:42<03:07, 724.49 examples/s]Map:  71%|███████   | 330000/464911 [07:44<03:07, 719.98 examples/s]Map:  71%|███████   | 331000/464911 [07:45<03:07, 713.98 examples/s]Map:  71%|███████▏  | 332000/464911 [07:47<03:07, 709.66 examples/s]Map:  72%|███████▏  | 333000/464911 [07:48<03:05, 712.98 examples/s]Map:  72%|███████▏  | 334000/464911 [07:49<03:01, 720.80 examples/s]Map:  72%|███████▏  | 335000/464911 [07:51<02:53, 746.67 examples/s]Map:  72%|███████▏  | 336000/464911 [07:52<02:50, 756.46 examples/s]Map:  72%|███████▏  | 337000/464911 [07:53<02:47, 762.48 examples/s]Map:  73%|███████▎  | 338000/464911 [07:54<02:44, 769.69 examples/s]Map:  73%|███████▎  | 339000/464911 [07:56<02:44, 764.31 examples/s]Map:  73%|███████▎  | 340000/464911 [07:57<02:47, 745.63 examples/s]Map:  73%|███████▎  | 341000/464911 [07:59<02:46, 744.35 examples/s]Map:  74%|███████▎  | 342000/464911 [08:00<02:46, 738.12 examples/s]Map:  74%|███████▍  | 343000/464911 [08:01<02:43, 743.50 examples/s]Map:  74%|███████▍  | 344000/464911 [08:03<02:45, 731.82 examples/s]Map:  74%|███████▍  | 345000/464911 [08:04<02:43, 731.44 examples/s]Map:  74%|███████▍  | 346000/464911 [08:05<02:42, 729.99 examples/s]Map:  75%|███████▍  | 347000/464911 [08:07<02:36, 751.66 examples/s]Map:  75%|███████▍  | 348000/464911 [08:08<02:31, 769.17 examples/s]Map:  75%|███████▌  | 349000/464911 [08:09<02:27, 785.95 examples/s]Map:  75%|███████▌  | 350000/464911 [08:10<02:27, 779.13 examples/s]Map:  75%|███████▌  | 351000/464911 [08:12<02:30, 754.83 examples/s]Map:  76%|███████▌  | 352000/464911 [08:13<02:31, 742.86 examples/s]Map:  76%|███████▌  | 353000/464911 [08:15<02:32, 735.96 examples/s]Map:  76%|███████▌  | 354000/464911 [08:16<02:33, 722.81 examples/s]Map:  76%|███████▋  | 355000/464911 [08:17<02:34, 712.64 examples/s]Map:  77%|███████▋  | 356000/464911 [08:19<02:31, 717.26 examples/s]Map:  77%|███████▋  | 357000/464911 [08:20<02:29, 722.34 examples/s]Map:  77%|███████▋  | 358000/464911 [08:22<02:28, 721.32 examples/s]Map:  77%|███████▋  | 359000/464911 [08:23<02:22, 743.39 examples/s]Map:  77%|███████▋  | 360000/464911 [08:24<02:17, 761.75 examples/s]Map:  78%|███████▊  | 361000/464911 [08:25<02:17, 756.30 examples/s]Map:  78%|███████▊  | 362000/464911 [08:27<02:13, 769.09 examples/s]Map:  78%|███████▊  | 363000/464911 [08:28<02:13, 762.28 examples/s]Map:  78%|███████▊  | 364000/464911 [08:29<02:14, 751.88 examples/s]Map:  79%|███████▊  | 365000/464911 [08:31<02:15, 739.37 examples/s]Map:  79%|███████▊  | 366000/464911 [08:32<02:16, 726.99 examples/s]Map:  79%|███████▉  | 367000/464911 [08:34<02:14, 727.25 examples/s]Map:  79%|███████▉  | 368000/464911 [08:35<02:11, 737.05 examples/s]Map:  79%|███████▉  | 369000/464911 [08:36<02:10, 732.38 examples/s]Map:  80%|███████▉  | 370000/464911 [08:38<02:06, 747.71 examples/s]Map:  80%|███████▉  | 371000/464911 [08:39<02:03, 759.26 examples/s]Map:  80%|████████  | 372000/464911 [08:40<02:00, 768.94 examples/s]Map:  80%|████████  | 373000/464911 [08:41<01:57, 779.67 examples/s]Map:  80%|████████  | 374000/464911 [08:43<01:57, 770.94 examples/s]Map:  81%|████████  | 375000/464911 [08:44<01:57, 763.58 examples/s]Map:  81%|████████  | 376000/464911 [08:45<01:57, 755.93 examples/s]Map:  81%|████████  | 377000/464911 [08:47<01:57, 750.52 examples/s]Map:  81%|████████▏ | 378000/464911 [08:48<01:56, 746.07 examples/s]Map:  82%|████████▏ | 379000/464911 [08:49<01:57, 734.12 examples/s]Map:  82%|████████▏ | 380000/464911 [08:51<01:54, 740.87 examples/s]Map:  82%|████████▏ | 381000/464911 [08:52<01:55, 727.76 examples/s]Map:  82%|████████▏ | 382000/464911 [08:53<01:50, 747.88 examples/s]Map:  82%|████████▏ | 383000/464911 [08:55<01:47, 762.61 examples/s]Map:  83%|████████▎ | 384000/464911 [08:56<01:43, 778.53 examples/s]Map:  83%|████████▎ | 385000/464911 [08:57<01:43, 768.77 examples/s]Map:  83%|████████▎ | 386000/464911 [08:59<01:45, 749.17 examples/s]Map:  83%|████████▎ | 387000/464911 [09:00<01:44, 742.21 examples/s]Map:  83%|████████▎ | 388000/464911 [09:02<01:51, 687.80 examples/s]Map:  84%|████████▎ | 389000/464911 [09:03<01:49, 692.07 examples/s]Map:  84%|████████▍ | 390000/464911 [09:05<01:48, 689.87 examples/s]Map:  84%|████████▍ | 391000/464911 [09:06<01:47, 690.15 examples/s]Map:  84%|████████▍ | 392000/464911 [09:08<01:45, 690.14 examples/s]Map:  85%|████████▍ | 393000/464911 [09:09<01:42, 699.16 examples/s]Map:  85%|████████▍ | 394000/464911 [09:10<01:38, 718.94 examples/s]Map:  85%|████████▍ | 395000/464911 [09:12<01:35, 734.57 examples/s]Map:  85%|████████▌ | 396000/464911 [09:13<01:31, 751.36 examples/s]Map:  85%|████████▌ | 397000/464911 [09:14<01:29, 757.14 examples/s]Map:  86%|████████▌ | 398000/464911 [09:16<01:30, 738.89 examples/s]Map:  86%|████████▌ | 399000/464911 [09:17<01:31, 723.87 examples/s]Map:  86%|████████▌ | 400000/464911 [09:18<01:31, 711.12 examples/s]Map:  86%|████████▋ | 401000/464911 [09:20<01:31, 702.18 examples/s]Map:  86%|████████▋ | 402000/464911 [09:21<01:30, 691.67 examples/s]Map:  87%|████████▋ | 403000/464911 [09:23<01:29, 690.08 examples/s]Map:  87%|████████▋ | 404000/464911 [09:24<01:28, 691.78 examples/s]Map:  87%|████████▋ | 405000/464911 [09:26<01:25, 703.02 examples/s]Map:  87%|████████▋ | 406000/464911 [09:27<01:21, 721.59 examples/s]Map:  88%|████████▊ | 407000/464911 [09:28<01:18, 738.21 examples/s]Map:  88%|████████▊ | 408000/464911 [09:30<01:15, 750.44 examples/s]Map:  88%|████████▊ | 409000/464911 [09:31<01:15, 743.29 examples/s]Map:  88%|████████▊ | 410000/464911 [09:32<01:15, 726.95 examples/s]Map:  88%|████████▊ | 411000/464911 [09:34<01:14, 724.09 examples/s]Map:  89%|████████▊ | 412000/464911 [09:35<01:13, 717.64 examples/s]Map:  89%|████████▉ | 413000/464911 [09:37<01:13, 703.41 examples/s]Map:  89%|████████▉ | 414000/464911 [09:38<01:12, 700.38 examples/s]Map:  89%|████████▉ | 415000/464911 [09:40<01:11, 694.77 examples/s]Map:  89%|████████▉ | 416000/464911 [09:41<01:11, 679.88 examples/s]Map:  90%|████████▉ | 417000/464911 [09:42<01:08, 695.82 examples/s]Map:  90%|████████▉ | 418000/464911 [09:44<01:05, 716.06 examples/s]Map:  90%|█████████ | 419000/464911 [09:45<01:02, 728.97 examples/s]Map:  90%|█████████ | 420000/464911 [09:47<01:02, 716.88 examples/s]Map:  91%|█████████ | 421000/464911 [09:48<01:01, 709.59 examples/s]Map:  91%|█████████ | 422000/464911 [09:49<01:00, 705.28 examples/s]Map:  91%|█████████ | 423000/464911 [09:51<00:59, 700.37 examples/s]Map:  91%|█████████ | 424000/464911 [09:52<00:58, 699.07 examples/s]Map:  91%|█████████▏| 425000/464911 [09:54<00:56, 703.72 examples/s]Map:  92%|█████████▏| 426000/464911 [09:55<00:54, 716.09 examples/s]Map:  92%|█████████▏| 427000/464911 [09:56<00:52, 723.43 examples/s]Map:  92%|█████████▏| 428000/464911 [09:58<00:50, 736.08 examples/s]Map:  92%|█████████▏| 429000/464911 [09:59<00:47, 748.38 examples/s]Map:  92%|█████████▏| 430000/464911 [10:00<00:46, 755.34 examples/s]Map:  93%|█████████▎| 431000/464911 [10:02<00:44, 755.27 examples/s]Map:  93%|█████████▎| 432000/464911 [10:03<00:44, 739.63 examples/s]Map:  93%|█████████▎| 433000/464911 [10:04<00:43, 726.46 examples/s]Map:  93%|█████████▎| 434000/464911 [10:06<00:43, 712.77 examples/s]Map:  94%|█████████▎| 435000/464911 [10:07<00:42, 704.56 examples/s]Map:  94%|█████████▍| 436000/464911 [10:09<00:40, 706.72 examples/s]Map:  94%|█████████▍| 437000/464911 [10:10<00:39, 707.78 examples/s]Map:  94%|█████████▍| 438000/464911 [10:12<00:38, 698.70 examples/s]Map:  94%|█████████▍| 439000/464911 [10:13<00:36, 705.95 examples/s]Map:  95%|█████████▍| 440000/464911 [10:14<00:34, 726.84 examples/s]Map:  95%|█████████▍| 441000/464911 [10:16<00:32, 739.81 examples/s]Map:  95%|█████████▌| 442000/464911 [10:17<00:30, 755.11 examples/s]Map:  95%|█████████▌| 443000/464911 [10:18<00:29, 748.87 examples/s]Map:  96%|█████████▌| 444000/464911 [10:20<00:28, 732.23 examples/s]Map:  96%|█████████▌| 445000/464911 [10:21<00:27, 728.24 examples/s]Map:  96%|█████████▌| 446000/464911 [10:23<00:26, 714.63 examples/s]Map:  96%|█████████▌| 447000/464911 [10:24<00:25, 705.10 examples/s]Map:  96%|█████████▋| 448000/464911 [10:25<00:24, 700.25 examples/s]Map:  97%|█████████▋| 449000/464911 [10:27<00:22, 701.64 examples/s]Map:  97%|█████████▋| 450000/464911 [10:28<00:21, 697.97 examples/s]Map:  97%|█████████▋| 451000/464911 [10:30<00:19, 711.86 examples/s]Map:  97%|█████████▋| 452000/464911 [10:31<00:17, 731.32 examples/s]Map:  97%|█████████▋| 453000/464911 [10:32<00:16, 733.99 examples/s]Map:  98%|█████████▊| 454000/464911 [10:34<00:14, 742.90 examples/s]Map:  98%|█████████▊| 455000/464911 [10:35<00:13, 740.00 examples/s]Map:  98%|█████████▊| 456000/464911 [10:36<00:12, 728.37 examples/s]Map:  98%|█████████▊| 457000/464911 [10:38<00:10, 721.97 examples/s]Map:  99%|█████████▊| 458000/464911 [10:39<00:09, 724.70 examples/s]Map:  99%|█████████▊| 459000/464911 [10:41<00:08, 719.06 examples/s]Map:  99%|█████████▉| 460000/464911 [10:42<00:06, 719.11 examples/s]Map:  99%|█████████▉| 461000/464911 [10:43<00:05, 721.17 examples/s]Map:  99%|█████████▉| 462000/464911 [10:45<00:03, 733.73 examples/s]Map: 100%|█████████▉| 463000/464911 [10:46<00:02, 744.96 examples/s]Map: 100%|█████████▉| 464000/464911 [10:47<00:01, 749.41 examples/s]Map: 100%|██████████| 464911/464911 [10:48<00:00, 763.86 examples/s]Map: 100%|██████████| 464911/464911 [10:49<00:00, 716.33 examples/s]
+[INFO:swift] Dataset filtered, origin length: 464911, filtered dataset length: 464909
+[INFO:swift] train_dataset: Dataset({
+    features: ['messages', 'length'],
+    num_rows: 464909
+})
+[INFO:swift] val_dataset: None
+[INFO:swift] [INPUT_IDS] [151644, 8948, 198, 105043, 99878, 100182, 110498, 3837, 102901, 113445, 108487, 5373, 99464, 9370, 100182, 99722, 113605, 1773, 151645, 198, 151644, 872, 198, 113126, 99427, 57452, 1773, 101071, 106012, 77559, 99246, 99427, 57452, 64817, 99246, 20412, 99427, 57452, 15, 13, 21, 112233, 16, 13, 15, 77559, 99246, 20412, 99427, 57452, 15, 13, 16, 17, 112233, 15, 13, 21, 21, 151645, 198, 151644, 77091, 198, 101898, 108098, 100469, 100811, 3837, 110632, 102683, 99225, 26381, 114628, 3837, 77559, 99246, 26381, 8863, 105540, 3837, 101886, 77559, 99246, 101162, 112067, 113317, 3837, 100137, 99427, 57452, 104196, 99932, 57452, 101897, 104986, 101899, 3837, 109691, 3837, 101212, 99657, 101062, 71268, 106784, 3837, 115596, 104432, 1773, 151645, 198, 151644, 872, 198, 109194, 11622, 101095, 26940, 117003, 99727, 99829, 24442, 99246, 103143, 25067, 106461, 17447, 79599, 220, 49434, 239, 57750, 110120, 11622, 103920, 113079, 41175, 220, 100644, 105350, 16530, 113079, 34187, 77288, 220, 8908, 230, 234, 107798, 33108, 110715, 17447, 101103, 71618, 104006, 100454, 41175, 220, 220, 109194, 104074, 11622, 99487, 99471, 104140, 103924, 256, 32181, 246, 30534, 102524, 11622, 101037, 11319, 220, 94305, 119, 21287, 36587, 99258, 11622, 106635, 8908, 108, 95, 99757, 151645, 198, 151644, 77091, 198, 102664, 105802, 99659, 99657, 100002, 99727, 99829, 24442, 99246, 103143, 104330, 104459, 104175, 3837, 100347, 108976, 1773, 27442, 99471, 103934, 85106, 59879, 99451, 31843, 116908, 106937, 3837, 104019, 108098, 42140, 100399, 101883, 52510, 1773, 116016, 33108, 110715, 101913, 30709, 100454, 104560, 104459, 107503, 3837, 101898, 104390, 37029, 99727, 99829, 24442, 99246, 103143, 90395, 100703, 103998, 64471, 73670, 22418, 11622, 99273, 99723, 102028, 99632, 111807, 1773, 151645, 198, 151644, 872, 198, 109194, 104019, 102524, 11622, 101037, 11319, 103998, 36587, 99258, 11622, 106635, 8908, 108, 95, 99757, 151645, 198, 151644, 77091, 198, 62244, 99657, 104423, 108976, 105504, 108684, 104175, 3837, 101898, 104390, 37029, 99727, 99829, 24442, 99246, 103143, 1773, 117603, 100703, 103998, 3837, 99794, 64471, 85106, 100640, 37029, 104459, 57191, 64471, 73670, 101118, 92894, 114464, 1773, 101360, 100703, 103998, 105885, 3837, 23031, 103944, 104661, 99722, 1773, 151645, 198]
+[INFO:swift] [INPUT] <|im_start|>system
+你是专业医疗助手，专注为您提供严谨、安全的医疗健康咨询服务。<|im_end|>
+<|im_start|>user
+小儿远视。检查说是左眼远视右眼是远视0.6近视1.0左眼是远视0.12近视0.66<|im_end|>
+<|im_start|>assistant
+建议给孩子戴镜，双眼屈光度不平衡，左眼度数较高，因此左眼相对视力较差，这种远视性的弱视经过一段时间治疗，一般来说，大部分孩子效果都比较好，不要太紧张。<|im_end|>
+<|im_start|>user
+请问用那个《硫酸阿托品眼膏》会不会上火  我女第一天用的时候发烧 ， 今天第二天不发烧了但  舌头上和屁股上都有起的小泡 ，  请问是不是用这个药的事啊   还要接着用吗？  医生说让用三天 谢谢<|im_end|>
+<|im_start|>assistant
+的确是有部分孩子对于阿托品眼膏会有药物反应，出现发热。点药以后需要按压内眼角下方，还要给孩子多喝一些水。舌头和屁股上的小泡可能是药物引起的，建议停止使用阿托品眼膏，并咨询医生是否可以改用赛飞杰散瞳。<|im_end|>
+<|im_start|>user
+请问还要接着用吗？医生说让用三天 谢谢<|im_end|>
+<|im_start|>assistant
+如果孩子出现了发热和其他不适反应，建议停止使用阿托品眼膏。请及时咨询医生，了解是否需要继续使用药物或是否可以考虑其他治疗方法。记得咨询医生的意见，以确保孩子的健康。<|im_end|>
+
+[INFO:swift] [LABELS_IDS] [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 101898, 108098, 100469, 100811, 3837, 110632, 102683, 99225, 26381, 114628, 3837, 77559, 99246, 26381, 8863, 105540, 3837, 101886, 77559, 99246, 101162, 112067, 113317, 3837, 100137, 99427, 57452, 104196, 99932, 57452, 101897, 104986, 101899, 3837, 109691, 3837, 101212, 99657, 101062, 71268, 106784, 3837, 115596, 104432, 1773, 151645, 198, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 102664, 105802, 99659, 99657, 100002, 99727, 99829, 24442, 99246, 103143, 104330, 104459, 104175, 3837, 100347, 108976, 1773, 27442, 99471, 103934, 85106, 59879, 99451, 31843, 116908, 106937, 3837, 104019, 108098, 42140, 100399, 101883, 52510, 1773, 116016, 33108, 110715, 101913, 30709, 100454, 104560, 104459, 107503, 3837, 101898, 104390, 37029, 99727, 99829, 24442, 99246, 103143, 90395, 100703, 103998, 64471, 73670, 22418, 11622, 99273, 99723, 102028, 99632, 111807, 1773, 151645, 198, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 62244, 99657, 104423, 108976, 105504, 108684, 104175, 3837, 101898, 104390, 37029, 99727, 99829, 24442, 99246, 103143, 1773, 117603, 100703, 103998, 3837, 99794, 64471, 85106, 100640, 37029, 104459, 57191, 64471, 73670, 101118, 92894, 114464, 1773, 101360, 100703, 103998, 105885, 3837, 23031, 103944, 104661, 99722, 1773, 151645, 198]
+[INFO:swift] [LABELS] [-100 * 64]建议给孩子戴镜，双眼屈光度不平衡，左眼度数较高，因此左眼相对视力较差，这种远视性的弱视经过一段时间治疗，一般来说，大部分孩子效果都比较好，不要太紧张。<|im_end|>
+[-100 * 80]的确是有部分孩子对于阿托品眼膏会有药物反应，出现发热。点药以后需要按压内眼角下方，还要给孩子多喝一些水。舌头和屁股上的小泡可能是药物引起的，建议停止使用阿托品眼膏，并咨询医生是否可以改用赛飞杰散瞳。<|im_end|>
+[-100 * 23]如果孩子出现了发热和其他不适反应，建议停止使用阿托品眼膏。请及时咨询医生，了解是否需要继续使用药物或是否可以考虑其他治疗方法。记得咨询医生的意见，以确保孩子的健康。<|im_end|>
+
+[INFO:swift] Dataset Token Length: 366.166813±192.799614, min=33.000000, max=2040.000000, size=464909
+[INFO:swift] The TrainArguments will be saved in: /root/data1/MyProject/AIDoctor/llm/output/v2-20260416-091352/args.json
+[INFO:swift] model: PeftModelForCausalLM(
+  (base_model): LoraModel(
+    (model): QWenLMHeadModel(
+      (transformer): QWenModel(
+        (wte): Embedding(151936, 2048)
+        (drop): Dropout(p=0.0, inplace=False)
+        (rotary_emb): RotaryEmbedding()
+        (h): ModuleList(
+          (0-23): 24 x QWenBlock(
+            (ln_1): RMSNorm()
+            (attn): QWenAttention(
+              (c_attn): lora.Linear(
+                (base_layer): Linear(in_features=2048, out_features=6144, bias=True)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=2048, out_features=16, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=16, out_features=6144, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (c_proj): lora.Linear(
+                (base_layer): Linear(in_features=2048, out_features=2048, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=2048, out_features=16, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=16, out_features=2048, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (attn_dropout): Dropout(p=0.0, inplace=False)
+            )
+            (ln_2): RMSNorm()
+            (mlp): QWenMLP(
+              (w1): lora.Linear(
+                (base_layer): Linear(in_features=2048, out_features=5504, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=2048, out_features=16, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=16, out_features=5504, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (w2): lora.Linear(
+                (base_layer): Linear(in_features=2048, out_features=5504, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=2048, out_features=16, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=16, out_features=5504, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (c_proj): lora.Linear(
+                (base_layer): Linear(in_features=5504, out_features=2048, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=5504, out_features=16, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=16, out_features=2048, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+            )
+          )
+        )
+        (ln_f): RMSNorm()
+      )
+      (lm_head): Linear(in_features=2048, out_features=151936, bias=False)
+    )
+  )
+)
+[INFO:swift] model_parameter_info: PeftModelForCausalLM: 1850.2472M Params (13.4185M Trainable [0.7252%]), 0.7865M Buffers.
+[RANK 0] Detected kernel version 3.10.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+The model is already on multiple devices. Skipping the move to device specified in `args`.
+[INFO:swift] use_reentrant: False
+[INFO:swift] The logging file will be saved in: /root/data1/MyProject/AIDoctor/llm/output/v2-20260416-091352/logging.jsonl
+You are using an old version of the checkpointing format that is deprecated (We will also silently ignore `gradient_checkpointing_kwargs` in case you passed it).Please update to the new format on your modeling file. To use the new format, you need to completely remove the definition of the method `_set_gradient_checkpointing` in your model.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 151643}.
+The model is already on multiple devices. Skipping the move to device specified in `args`.
+You are using an old version of the checkpointing format that is deprecated (We will also silently ignore `gradient_checkpointing_kwargs` in case you passed it).Please update to the new format on your modeling file. To use the new format, you need to completely remove the definition of the method `_set_gradient_checkpointing` in your model.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 151643}.
+[INFO:swift] last_model_checkpoint: None
+[INFO:swift] best_model_checkpoint: None
+[INFO:swift] images_dir: /root/data1/MyProject/AIDoctor/llm/output/v2-20260416-091352/images
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/cli/sft.py", line 20, in <module>
+[rank1]:     sft_main()
+[rank1]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/train/sft.py", line 365, in sft_main
+[rank1]:     return SwiftSft(args).main()
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/base.py", line 49, in main
+[rank1]:     result = self.run()
+[rank1]:              ^^^^^^^^^^
+[rank1]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/ray/base.py", line 170, in wrapper
+[rank1]:     return func(self, *args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/train/sft.py", line 210, in run
+[rank1]:     return self.train(trainer)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/train/sft.py", line 258, in train
+[rank1]:     trainer.train(trainer.args.resume_from_checkpoint)
+[rank1]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/trainers/mixin.py", line 880, in train
+[rank1]:     res = super().train(*args, **kwargs)
+[rank1]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/transformers/trainer.py", line 2325, in train
+[rank1]:     return inner_training_loop(
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/transformers/trainer.py", line 2510, in _inner_training_loop
+[rank1]:     self._load_optimizer_and_scheduler(resume_from_checkpoint)
+[rank1]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/trainers/mixin.py", line 271, in _load_optimizer_and_scheduler
+[rank1]:     super()._load_optimizer_and_scheduler(*args, **kwargs)
+[rank1]:   File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/transformers/trainer.py", line 3589, in _load_optimizer_and_scheduler
+[rank1]:     check_torch_load_is_safe()
+[rank1]:   File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/transformers/utils/import_utils.py", line 1647, in check_torch_load_is_safe
+[rank1]:     raise ValueError(
+[rank1]: ValueError: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+[rank1]: See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/cli/sft.py", line 20, in <module>
+[rank0]:     sft_main()
+[rank0]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/train/sft.py", line 365, in sft_main
+[rank0]:     return SwiftSft(args).main()
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/base.py", line 49, in main
+[rank0]:     result = self.run()
+[rank0]:              ^^^^^^^^^^
+[rank0]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/ray/base.py", line 170, in wrapper
+[rank0]:     return func(self, *args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/train/sft.py", line 210, in run
+[rank0]:     return self.train(trainer)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/llm/train/sft.py", line 258, in train
+[rank0]:     trainer.train(trainer.args.resume_from_checkpoint)
+[rank0]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/trainers/mixin.py", line 880, in train
+[rank0]:     res = super().train(*args, **kwargs)
+[rank0]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/transformers/trainer.py", line 2325, in train
+[rank0]:     return inner_training_loop(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/transformers/trainer.py", line 2510, in _inner_training_loop
+[rank0]:     self._load_optimizer_and_scheduler(resume_from_checkpoint)
+[rank0]:   File "/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/trainers/mixin.py", line 271, in _load_optimizer_and_scheduler
+[rank0]:     super()._load_optimizer_and_scheduler(*args, **kwargs)
+[rank0]:   File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/transformers/trainer.py", line 3589, in _load_optimizer_and_scheduler
+[rank0]:     check_torch_load_is_safe()
+[rank0]:   File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/transformers/utils/import_utils.py", line 1647, in check_torch_load_is_safe
+[rank0]:     raise ValueError(
+[rank0]: ValueError: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+[rank0]: See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434
+W0416 09:25:21.584000 139948983448192 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 76532 closing signal SIGTERM
+E0416 09:25:21.900000 139948983448192 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 0 (pid: 76531) of binary: /root/anaconda3/envs/llm/bin/python3.11
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/torch/distributed/run.py", line 905, in <module>
+    main()
+  File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anaconda3/envs/llm/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/root/data1/MyProject/AIDoctor/llm/ms-swift/swift/cli/sft.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-04-16_09:25:21
+  host      : 29ca297df315
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 76531)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
