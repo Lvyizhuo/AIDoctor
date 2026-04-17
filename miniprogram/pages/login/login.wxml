@@ -1,0 +1,32 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+  <view class="login-card">
+    <view class="logo-section">
+      <view class="logo-icon">
+        <image src="/assets/icons/health.png" mode="aspectFit" class="logo-image"></image>
+      </view>
+      <text class="app-title">AI家庭医生</text>
+      <text class="app-subtitle">您的专属健康管理助手</text>
+    </view>
+
+    <view class="login-info">
+      <text class="info-text">登录后即可使用AI问诊、健康档案管理等功能</text>
+    </view>
+
+    <button
+      class="wechat-login-btn {{ isLoggingIn ? 'btn-loading' : '' }}"
+      bindtap="handleLogin"
+      disabled="{{ isLoggingIn }}"
+    >
+      <view class="btn-content">
+        <image wx:if="{{ !isLoggingIn }}" src="/assets/icons/wechat.png" class="wechat-icon"></image>
+        <view wx:if="{{ isLoggingIn }}" class="loading-spinner"></view>
+        <text class="btn-text">{{ isLoggingIn ? '登录中...' : '微信一键登录' }}</text>
+      </view>
+    </button>
+
+    <view class="dev-hint">
+      <text class="hint-text">开发环境：点击按钮即可模拟登录</text>
+    </view>
+  </view>
+</view>

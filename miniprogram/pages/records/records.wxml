@@ -1,0 +1,26 @@
+<!--pages/records/records.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">健康档案</text>
+  </view>
+
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">检测报告</text>
+    </view>
+    <view class="empty-state">
+      <image src="/assets/icons/records.png" class="empty-icon"></image>
+      <text class="empty-text">暂无检测报告</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">就诊记录</text>
+    </view>
+    <view class="empty-state">
+      <image src="/assets/icons/records.png" class="empty-icon"></image>
+      <text class="empty-text">暂无就诊记录</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,100 @@
+<!--pages/ai-consult/ai-consult.wxml-->
+<view class="chat-container">
+  <view class="chat-header">
+    <view class="header-left" bindtap="goBack">
+      <image src="/assets/icons/chevron-left.png" class="header-icon"></image>
+    </view>
+    <text class="header-title">AI智能问诊</text>
+    <view class="header-right">
+      <image src="/assets/icons/more.png" class="header-icon"></image>
+      <view class="header-divider"></view>
+      <image src="/assets/icons/close.png" class="header-icon" bindtap="goBack"></image>
+    </view>
+  </view>
+
+  <scroll-view
+    class="chat-messages"
+    scroll-y="{{ true }}"
+    scroll-into-view="{{ scrollToView }}"
+    scroll-with-animation="{{ true }}"
+    enhanced="{{ true }}"
+    show-scrollbar="{{ false }}"
+  >
+    <view class="messages-inner">
+      <view class="message-item" id="msg-{{ index }}" wx:for="{{ messages }}" wx:key="index">
+        <view wx:if="{{ item.role === 'assistant' }}" class="message-row assistant-row">
+          <view class="avatar assistant-avatar">
+            <image src="/assets/icons/sparkles.png" class="avatar-icon"></image>
+          </view>
+          <view class="message-content assistant-content">
+            <view class="message-bubble assistant-bubble">
+              <view wx:if="{{ item.isWelcome }}" class="welcome-message">
+                <text class="welcome-title">Hey，我是FamilyDoctor小助👋</text>
+                <text class="welcome-text">{{ item.content }}</text>
+                <view class="welcome-footer">
+                  <text class="welcome-footer-text">泛喜健康科技提供</text>
+                </view>
+              </view>
+              <text wx:else class="message-text">{{ item.content }}</text>
+            </view>
+          </view>
+        </view>
+
+        <view wx:if="{{ item.role === 'user' }}" class="message-row user-row">
+          <view class="message-content user-content">
+            <view class="message-bubble user-bubble">
+              <text class="message-text">{{ item.content }}</text>
+            </view>
+          </view>
+          <view class="avatar user-avatar">
+            <image src="{{ userAvatar }}" class="avatar-image" mode="aspectFill"></image>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{ isLoading }}" class="message-row assistant-row">
+        <view class="avatar assistant-avatar">
+          <image src="/assets/icons/sparkles.png" class="avatar-icon"></image>
+        </view>
+        <view class="message-content assistant-content">
+          <view class="message-bubble assistant-bubble">
+            <view class="typing-indicator">
+              <view class="typing-dot"></view>
+              <view class="typing-dot"></view>
+              <view class="typing-dot"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="chat-footer">
+    <view class="quick-actions">
+      <view class="quick-action-btn" bindtap="uploadReport">
+        <image src="/assets/icons/file-text.png" class="action-icon"></image>
+        <text class="action-text">上传检查检验报告</text>
+      </view>
+    </view>
+
+    <view class="input-area">
+      <view class="input-btn voice-btn">
+        <image src="/assets/icons/mic.png" class="input-btn-icon"></image>
+      </view>
+      <view class="input-wrapper">
+        <input
+          class="chat-input"
+          type="text"
+          placeholder="请输入您要回复的内容"
+          value="{{ inputText }}"
+          bindinput="onInput"
+          confirm-type="send"
+          bindconfirm="sendMessage"
+        />
+      </view>
+      <view class="input-btn attach-btn" bindtap="chooseImage">
+        <image src="/assets/icons/plus.png" class="input-btn-icon"></image>
+      </view>
+    </view>
+  </view>
+</view>

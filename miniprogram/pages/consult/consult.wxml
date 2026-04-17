@@ -1,0 +1,16 @@
+<!--pages/consult/consult.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">咨询记录</text>
+  </view>
+
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">历史问诊</text>
+    </view>
+    <view class="empty-state">
+      <image src="/assets/icons/consult.png" class="empty-icon"></image>
+      <text class="empty-text">暂无咨询记录</text>
+    </view>
+  </view>
+</view>

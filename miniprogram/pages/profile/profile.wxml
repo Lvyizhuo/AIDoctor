@@ -1,0 +1,45 @@
+<!--pages/profile/profile.wxml-->
+<view class="container">
+  <view class="profile-header">
+    <image src="{{ userInfo.avatar_url || '/assets/icons/default-avatar.png' }}" class="profile-avatar"></image>
+    <view class="profile-info">
+      <text class="profile-name">{{ userInfo.nickname || '微信用户' }}</text>
+      <text class="profile-phone">{{ userInfo.phone || '未绑定手机号' }}</text>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-item" bindtap="goToMembers">
+      <view class="menu-left">
+        <image src="/assets/icons/users.png" class="menu-icon"></image>
+        <text class="menu-text">家庭成员</text>
+      </view>
+      <image src="/assets/icons/chevron-right.png" class="menu-arrow"></image>
+    </view>
+
+    <view class="menu-item" bindtap="goToReminders">
+      <view class="menu-left">
+        <image src="/assets/icons/bell.png" class="menu-icon"></image>
+        <text class="menu-text">用药提醒</text>
+      </view>
+      <image src="/assets/icons/chevron-right.png" class="menu-arrow"></image>
+    </view>
+
+    <view class="menu-item" bindtap="goToSettings">
+      <view class="menu-left">
+        <image src="/assets/icons/settings.png" class="menu-icon"></image>
+        <text class="menu-text">设置</text>
+      </view>
+      <image src="/assets/icons/chevron-right.png" class="menu-arrow"></image>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-item" bindtap="handleLogout">
+      <view class="menu-left">
+        <image src="/assets/icons/logout.png" class="menu-icon menu-icon-logout"></image>
+        <text class="menu-text menu-text-logout">退出登录</text>
+      </view>
+    </view>
+  </view>
+</view>

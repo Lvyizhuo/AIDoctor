@@ -1,0 +1,102 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <image src="/assets/icons/search.png" class="search-icon"></image>
+      <input class="search-input" placeholder="搜索健康问题" disabled></input>
+    </view>
+  </view>
+
+  <view class="health-card card">
+    <view class="card-header">
+      <text class="card-title">健康状况</text>
+      <view class="view-more">
+        <text class="view-more-text">查看详情</text>
+        <image src="/assets/icons/chevron-right.png" class="chevron-icon"></image>
+      </view>
+    </view>
+    <view class="health-metrics">
+      <view class="metric-item">
+        <text class="metric-value">98</text>
+        <text class="metric-label">血氧饱和度</text>
+      </view>
+      <view class="metric-divider"></view>
+      <view class="metric-item">
+        <text class="metric-value">72</text>
+        <text class="metric-label">心率</text>
+      </view>
+      <view class="metric-divider"></view>
+      <view class="metric-item">
+        <text class="metric-value">36.5°</text>
+        <text class="metric-label">体温</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-grid">
+    <view class="action-card" bindtap="goToAIConsult">
+      <view class="action-icon-wrapper doctor-icon">
+        <image src="/assets/icons/stethoscope.png" class="action-icon"></image>
+      </view>
+      <text class="action-title">智能问诊</text>
+      <text class="action-subtitle">24小时在线咨询</text>
+    </view>
+    <view class="action-card" bindtap="goToRecords">
+      <view class="action-icon-wrapper record-icon">
+        <image src="/assets/icons/activity.png" class="action-icon"></image>
+      </view>
+      <text class="action-title">健康档案</text>
+      <text class="action-subtitle">专业检测报告</text>
+    </view>
+  </view>
+
+  <view class="reminders-card card" wx:if="{{ reminders.length > 0 }}">
+    <view class="card-header">
+      <text class="card-title">今日提醒</text>
+    </view>
+    <view class="reminders-list">
+      <view
+        class="reminder-item {{ item.done ? 'reminder-done' : '' }}"
+        wx:for="{{ reminders }}"
+        wx:key="id"
+        data-id="{{ item.id }}"
+        bindtap="handleReminderTap"
+      >
+        <view class="reminder-icon-wrapper">
+          <image src="{{ item.icon }}" class="reminder-icon"></image>
+        </view>
+        <view class="reminder-content">
+          <text class="reminder-title {{ item.done ? 'line-through' : '' }}">{{ item.title }}</text>
+          <text class="reminder-time">{{ item.time }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="reminders-card card" wx:else>
+    <view class="card-header">
+      <text class="card-title">今日提醒</text>
+    </view>
+    <view class="no-reminders">
+      <text class="no-reminders-text">今日提醒已全部完成</text>
+    </view>
+  </view>
+
+  <view class="members-card card">
+    <view class="card-header">
+      <text class="card-title">家庭成员</text>
+    </view>
+    <view class="members-list">
+      <view class="member-item" wx:for="{{ members }}" wx:key="id">
+        <image src="{{ item.avatar }}" class="member-avatar"></image>
+        <view class="member-info">
+          <text class="member-name">{{ item.name }}</text>
+          <text class="member-relation">{{ item.relation }}</text>
+        </view>
+        <view class="member-status status-good">
+          <text class="status-text">状态良好</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

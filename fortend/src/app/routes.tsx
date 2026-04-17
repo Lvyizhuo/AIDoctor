@@ -5,8 +5,13 @@ import Records from "./pages/Records";
 import Consult from "./pages/Consult";
 import Profile from "./pages/Profile";
 import AIConsult from "./pages/AIConsult";
+import Login from "./pages/Login";
 
 export const router = createBrowserRouter([
+  {
+    path: "/login",
+    Component: Login,
+  },
   {
     path: "/",
     Component: Root,

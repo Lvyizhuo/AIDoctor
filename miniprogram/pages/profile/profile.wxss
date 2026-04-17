@@ -1,0 +1,90 @@
+/* pages/profile/profile.wxss */
+.container {
+  padding: 16px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  margin-right: 16px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.profile-phone {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.menu-section {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+.menu-icon-logout {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(92%) saturate(6228%) hue-rotate(356deg) brightness(96%) contrast(119%);
+}
+
+.menu-text {
+  font-size: 16px;
+  color: #111827;
+}
+
+.menu-text-logout {
+  color: #dc2626;
+}
+
+.menu-arrow {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
